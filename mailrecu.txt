@@ -1,0 +1,17 @@
+
+
+Bonjour,
+Félicitations : votre équipe est sélectionnée pour le GPU Challenge 2026, organisé par Epitech Bénin, UDU Technologies et l'Alliance Fintech UEMOA. La phase de développement est lancée.
+Dates clés
+Mardi 24 novembre, 23h59 : remise de vos livrables via le formulaire de dépôt : https://forms.cloud.microsoft/e/WfmHGjebjX.
+Mercredi 25 novembre : demi-finale : pitch et démonstration de votre solution.
+Jeudi 26 novembre : finale pour les finalistes.
+Votre présence est attendue les deux jours. Le planning détaillé et l'ordre de passage vous seront communiqués.
+Vous trouverez en pièce jointe les cas d'usage du challenge.
+Ce que vous remettez
+un prototype (démonstration reproductible ou dépôt de code) ;
+des résultats : comparaison avec une référence simple, mesures et limites ;
+un support de présentation.
+Le jury évalue l'utilité métier, le résultat technique, la qualité des données, la reproductibilité et la faisabilité d'un pilote.
+Pour toute question, répondez simplement à ce message ou contactez-moi par whatsapp.
+Cordialement,
