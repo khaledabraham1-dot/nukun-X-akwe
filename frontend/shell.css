@@ -1,10 +1,27 @@
-.block-container{max-width:1250px;padding-top:4.5rem}
-[data-testid="stAppViewContainer"] h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.045em;line-height:1.08;text-wrap:balance}
-[data-testid="stMetric"],[data-testid="stForm"]{border:1px solid color-mix(in srgb,currentColor 17%,transparent);border-radius:16px;padding:1.2rem;background:var(--secondary-background-color)}
-[data-testid="stMetricValue"]{font-variant-numeric:tabular-nums;letter-spacing:-.04em}
-[data-testid="stSidebar"] [role="radiogroup"]{gap:.25rem}
-[data-testid="stSidebar"] [role="radiogroup"] label{padding:.6rem .8rem;border-radius:9px;transition:background .15s}
-[data-testid="stSidebar"] [role="radiogroup"] label:hover,[data-testid="stSidebar"] label:has(input:checked){background:color-mix(in srgb,currentColor 9%,transparent)}
-[data-testid="stSidebar"] label:has(input:focus-visible){outline:2px solid currentColor}
-@media(max-width:700px){.block-container{padding:4rem 1rem 2rem}}
+.block-container{max-width:1340px;padding:3.8rem clamp(1rem,4vw,5rem) 2.5rem}
+[data-testid=stAppViewContainer] h1{font-family:"Segoe UI",system-ui,sans-serif;font-size:clamp(2rem,3vw,3rem);font-weight:620;letter-spacing:-.06em;line-height:1.08;text-wrap:balance}
+[data-testid=stMain] h2,[data-testid=stMain] h3{letter-spacing:-.035em}
+[data-testid=stSidebar]{border-right:1px solid color-mix(in srgb,currentColor 12%,transparent)}
+[data-testid=stSidebar] [data-testid=stSidebarUserContent]{padding-top:.6rem}
+.brand{display:flex;align-items:center;gap:12px;font:650 1.25rem/1.3 "Segoe UI",system-ui,sans-serif;letter-spacing:-.045em;padding-bottom:18px}
+.brand b{background:#193f32;color:#dbf1a5;border:1px solid #649172;border-radius:11px;display:grid;place-items:center;width:40px;height:40px;font-size:1.8rem;line-height:1}
+.brand span{display:block;font-size:.75rem;font-weight:450;letter-spacing:.02em;opacity:.76}
+[data-testid=stSidebar] [role=radiogroup]{gap:3px}
+[data-testid=stSidebar] [role=radiogroup] label{display:flex;flex-direction:row;align-items:center;width:100%;margin:0;padding:.62rem .75rem;border-radius:8px;gap:8px}
+[data-testid=stSidebar] [role=radiogroup] label>div>div:first-child:not([data-testid]){display:none}
+[data-testid=stSidebar] [role=radiogroup]>div{width:100%}
+[data-testid=stSidebar] [role=radiogroup] label::before{font-family:"Material Symbols Rounded";font-size:20px;width:22px;line-height:1;flex-shrink:0}
+[data-testid=stSidebar] [role=radiogroup]>div:nth-child(1) label::before{content:"dashboard"}
+[data-testid=stSidebar] [role=radiogroup]>div:nth-child(2) label::before{content:"shield"}
+[data-testid=stSidebar] [role=radiogroup]>div:nth-child(3) label::before{content:"menu_book"}
+[data-testid=stSidebar] [role=radiogroup]>div:nth-child(4) label::before{content:"bar_chart"}
+[data-testid=stSidebar] [role=radiogroup]>div:nth-child(5) label::before{content:"hub"}
+[data-testid=stSidebar] label:has(input:checked){background:color-mix(in srgb,currentColor 9%,transparent);box-shadow:inset 3px 0 #67996b}
+[data-testid=stSidebar] label:hover{background:color-mix(in srgb,currentColor 5%,transparent)}
+[data-testid=stSidebar] label:has(input:focus-visible){outline:2px solid currentColor}
+[data-testid=stMetric],[data-testid=stForm]{border:1px solid color-mix(in srgb,currentColor 16%,transparent);border-radius:14px;padding:1.2rem}
+[data-testid=stMetric]{border-top:3px solid #659772}
+[data-testid=stMetricValue]{font-variant-numeric:tabular-nums;letter-spacing:-.04em}
+[data-testid=stExpander]{border-radius:12px}
+@media(max-width:700px){.block-container{padding:3.6rem 1rem 1.5rem}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}

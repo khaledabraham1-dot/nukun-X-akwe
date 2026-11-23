@@ -150,8 +150,7 @@ def load_graph_lab(artifact_text):
 
 
 def graph_lab():
-    st.caption("04 / LABORATOIRE DU GRAPHE")
-    st.title("Interroger le réseau entraîné.")
+    st.title("Laboratoire de graphe")
     st.write("Rejeu des poids de l'expérience de stress, sans réentraînement. "
              "Les indices sont expérimentaux et ne déclenchent aucun transfert.")
     if importlib.util.find_spec("torch") is None:
@@ -175,7 +174,8 @@ def graph_lab():
         st.info("Cette exécution ne comporte pas de réseau exporté.")
         return
     left, right = st.columns(2)
-    with left:
+    with left.container(border=True):
+        st.subheader("Paramètres du modèle")
         model_name = st.selectbox("Réseau à examiner", list(models), index=list(models).index("sage_history"), key="lab_model")
         receiver = st.selectbox("Compte destinataire fictif", ["M000", "X000", "I000", "M064"], key="lab_receiver")
         amount = int(st.number_input("Montant de la proposition en XOF", min_value=100, max_value=1000000,
@@ -196,7 +196,8 @@ def graph_lab():
                        f"calcul local {result['milliseconds']:.1f} ms sur {result['device'].upper()}. "
                        "Mesure ponctuelle, sans garantie de latence.")
             st.json(result["facts"])
-    with right:
+    with right.container(border=True):
+        st.subheader("Réseau du compte")
         st.plotly_chart(graph_figure(history, receiver, now), width="stretch")
         st.caption("Aperçu d'au plus 16 émetteurs. Le réseau analyse le graphe historique complet disponible, "
                    "pas seulement ces liens affichés.")
@@ -220,13 +221,12 @@ def main():
     css = (ROOT / "frontend" / "shell.css").read_text(encoding="utf-8")
     st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
-    st.sidebar.markdown("## ◈ NUKÚN × Akwɛ")
-    st.sidebar.caption("Protéger l'argent. Comprendre l'activité.")
+    st.sidebar.markdown('<div class="brand"><b aria-hidden="true">◈</b><div>NUKÚN × Akwɛ<span>Portefeuille &amp; cahier</span></div></div>', unsafe_allow_html=True)
     page = st.sidebar.radio("Espace de travail", ["Vue d'ensemble", "NUKÚN Protège", "Cahier Akwɛ", "Résultats", "Laboratoire graphe"],
                             key="page", label_visibility="collapsed")
     st.sidebar.divider()
-    st.sidebar.caption("GPU CHALLENGE 2026 · BÉNIN")
-    st.sidebar.info("Portefeuille fictif · données simulées · exécution CPU")
+    st.sidebar.caption("Environnement de démonstration")
+    st.sidebar.write("Données simulées · CPU")
 
     artifact_path = ROOT / "artifacts" / "baseline.json"
     if not artifact_path.exists():
@@ -267,8 +267,8 @@ def main():
             return
 
         if page == "Vue d'ensemble":
-            st.title("La confiance commence par comprendre les flux.")
-            st.write("Suivez votre portefeuille, vérifiez un transfert et tenez votre cahier commercial.")
+            st.title("Tableau de bord")
+            st.write("Votre portefeuille et les mouvements du cahier commercial.")
             assets = ROOT / "frontend" / "assets"
             dashboard = st.components.v2.component(
                 "nukun_workspace",
@@ -281,23 +281,25 @@ def main():
                 if target in {"NUKÚN Protège", "Cahier Akwɛ", "Résultats", "Laboratoire graphe"}:
                     st.session_state.page = target
 
+            totals = db.summary("M000")
             dashboard(key="workspace", on_navigate_change=navigate,
                       data={"balance": wallet.balance, "total": len(dataset.transactions),
-                            "entries": db.summary("M000")["confirmed_count"], "days": daily_flows(dataset)})
+                            "entries": totals["confirmed_count"], "matched": totals["matched_count"],
+                            "sales": totals["sales"], "expenses": totals["expenses"], "days": daily_flows(dataset)})
             with st.expander("Encaissements du commerçant M000"):
                 st.plotly_chart(graph_figure(history, "M000", now_sim), width="stretch")
                 st.caption("Encaissements fictifs de M000, 16 contreparties au maximum.")
 
         elif page == "NUKÚN Protège":
-            st.caption("01 / PRÉPARER · COMPRENDRE · CONFIRMER")
-            st.title("Un temps pour vérifier.")
+            st.title("Vérifier un transfert")
             st.write("Analysez un destinataire avant de confirmer un transfert depuis votre portefeuille fictif.")
             choices = {"M000 · commerçant de démonstration": "M000",
                        "X000 · scénario de compte suspect": "X000",
                        "I000 · scénario d'activité imitée": "I000",
                        "C0001 · particulier": "C0001"}
             col, graph = st.columns([1, 1])
-            with col:
+            with col.container(border=True):
+                st.subheader("Détails du transfert")
                 receiver_label = st.selectbox("Destinataire", list(choices), key="receiver")
                 receiver = choices[receiver_label]
                 amount = int(st.number_input("Montant en XOF", min_value=100, max_value=100000, value=12000, step=100, key="transfer_amount"))
@@ -347,7 +349,8 @@ def main():
                             st.rerun()
                 if st.session_state.get("transfer_success"):
                     st.success(st.session_state.transfer_success)
-            with graph:
+            with graph.container(border=True):
+                st.subheader("Réseau du destinataire")
                 st.plotly_chart(graph_figure(history, receiver, now_sim), width="stretch")
                 st.caption("Les noms des scénarios sont fournis pour la démonstration et ne sont jamais des variables du modèle.")
             if wallet.completed:
@@ -355,8 +358,7 @@ def main():
                     st.dataframe(pd.DataFrame([asdict(t) for t in wallet.completed.values()]), hide_index=True)
 
         elif page == "Cahier Akwɛ":
-            st.caption("02 / LE CAHIER QUI DONNE DU CONTEXTE")
-            st.title("Vos mots. Vos comptes.")
+            st.title("Cahier commercial")
             st.write("Commerçant M000 · ventes et dépenses du jour · saisie française bornée à un montant par phrase.")
             totals = db.summary("M000")
             a, b, c = st.columns(3)
@@ -366,6 +368,7 @@ def main():
             left, right = st.columns([1.2, 1])
             with left:
                 with st.form("statement_form"):
+                    st.subheader("Nouvelle écriture")
                     if "voice_draft" in st.session_state:
                         st.session_state.statement = st.session_state.pop("voice_draft")
                     st.session_state.setdefault("statement", "J'ai vendu pour 12 000 francs")
@@ -456,8 +459,7 @@ def main():
             graph_lab()
 
         else:
-            st.caption("03 / DES PREUVES AVANT LES PROMESSES")
-            st.title("Mesurer ce qui change.")
+            st.title("Résultats des modèles")
             st.info("Deux expériences distinctes : référence initiale et protocole de stress avec GraphSAGE. "
                     "Le portefeuille conserve son moteur de référence.")
             with st.expander("Expérience de stress et GraphSAGE", expanded=True):
