@@ -1,0 +1,5 @@
+# Versions effectivement utilisées pour le premier prototype, Python 3.12.
+numpy==2.5.3
+pandas==3.0.6
+streamlit==1.65.0
+plotly==7.1.0

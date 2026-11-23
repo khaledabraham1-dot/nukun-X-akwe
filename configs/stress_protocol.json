@@ -1,0 +1,20 @@
+{
+  "protocol_id": "stress-v1-2026-11-22",
+  "simulation_version": "stress_v1",
+  "seeds": [73101, 73102, 73103],
+  "transactions_per_seed": 18000,
+  "days": 30,
+  "train_cut_seconds": 1555200,
+  "validation_cut_seconds": 2073600,
+  "new_accounts_activation_seconds": 2073600,
+  "recall_target": 0.8,
+  "graph_snapshot_seconds": 43200,
+  "graph_hidden_dim": 24,
+  "graph_epochs": 20,
+  "graph_learning_rate": 0.003,
+  "logistic_steps": 600,
+  "bootstrap_repeats": 400,
+  "context_blackout": "zero_context_for_all_test_transactions_without_retraining",
+  "variants": ["rules", "logistic_history", "logistic_akwe", "mlp_history", "mlp_akwe", "sage_history", "sage_akwe"],
+  "policy": "Fixed before first stress run. No model, threshold or seed selected on test. All variants and runs are reported."
+}

@@ -1,0 +1,408 @@
+{
+  "schema_version": 1,
+  "source_sha256": "21782072825e461f84781941198958fb838ff286288f94f29a06d2d478881d5a",
+  "config": {
+    "size": 30000,
+    "seeds": [
+      2026,
+      2027,
+      2028
+    ],
+    "steps": 600
+  },
+  "environment": {
+    "python": "3.12.10",
+    "numpy": "2.5.3",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel"
+  },
+  "runs": [
+    {
+      "seed": 2026,
+      "size": 30000,
+      "dataset_sha256": "d8022e0f275ec75292391e27afcaa308ee825e02b26f1e86814f46843eca6ac1",
+      "train_cut_seconds": 1555200,
+      "validation_cut_seconds": 2073600,
+      "counts": {
+        "train": 18059,
+        "validation": 6024,
+        "test": 5917
+      },
+      "features_seconds": 4.664148400013801,
+      "training_seconds": {
+        "R1_history": 0.2798167000000831,
+        "R1_history_akwe": 0.3203757000155747
+      },
+      "benchmark": {
+        "device": "CPU",
+        "requests": 200,
+        "warmup": 20,
+        "p50_ms": 0.08129999332595617,
+        "p95_ms": 0.17301497864536938,
+        "includes": "caractéristiques locales 7 jours + score, historique déjà chargé ; hors UI et réseau"
+      },
+      "models": {
+        "R0_rules": {
+          "validation": {
+            "n": 6024,
+            "fraud_count": 346,
+            "alerts": 2821,
+            "true_positives": 277,
+            "false_positives": 2544,
+            "recall": 0.8005780346820809,
+            "precision": 0.09819213045019497,
+            "average_precision": 0.06551019844496153,
+            "threshold": 0.6228550327073222,
+            "merchant_count": 2275,
+            "merchant_false_positives": 0,
+            "merchant_fpr": 0.0,
+            "imitator_count": 138,
+            "imitator_recall": 0.8695652173913043
+          },
+          "test": {
+            "n": 5917,
+            "fraud_count": 358,
+            "alerts": 2681,
+            "true_positives": 276,
+            "false_positives": 2405,
+            "recall": 0.770949720670391,
+            "precision": 0.10294666169339799,
+            "average_precision": 0.06959494942126819,
+            "threshold": 0.6228550327073222,
+            "merchant_count": 2246,
+            "merchant_false_positives": 0,
+            "merchant_fpr": 0.0,
+            "imitator_count": 174,
+            "imitator_recall": 0.6494252873563219
+          }
+        },
+        "R1_history": {
+          "validation": {
+            "n": 6024,
+            "fraud_count": 346,
+            "alerts": 1132,
+            "true_positives": 277,
+            "false_positives": 855,
+            "recall": 0.8005780346820809,
+            "precision": 0.24469964664310953,
+            "average_precision": 0.2814698021913733,
+            "threshold": 0.542152303512972,
+            "merchant_count": 2275,
+            "merchant_false_positives": 2,
+            "merchant_fpr": 0.0008791208791208791,
+            "imitator_count": 138,
+            "imitator_recall": 0.855072463768116
+          },
+          "test": {
+            "n": 5917,
+            "fraud_count": 358,
+            "alerts": 1097,
+            "true_positives": 273,
+            "false_positives": 824,
+            "recall": 0.7625698324022346,
+            "precision": 0.2488605287146764,
+            "average_precision": 0.25120907175239643,
+            "threshold": 0.542152303512972,
+            "merchant_count": 2246,
+            "merchant_false_positives": 5,
+            "merchant_fpr": 0.002226179875333927,
+            "imitator_count": 174,
+            "imitator_recall": 0.7241379310344828
+          }
+        },
+        "R1_history_akwe": {
+          "validation": {
+            "n": 6024,
+            "fraud_count": 346,
+            "alerts": 692,
+            "true_positives": 277,
+            "false_positives": 415,
+            "recall": 0.8005780346820809,
+            "precision": 0.40028901734104044,
+            "average_precision": 0.7638595962634924,
+            "threshold": 0.5573492158140775,
+            "merchant_count": 2275,
+            "merchant_false_positives": 0,
+            "merchant_fpr": 0.0,
+            "imitator_count": 138,
+            "imitator_recall": 1.0
+          },
+          "test": {
+            "n": 5917,
+            "fraud_count": 358,
+            "alerts": 798,
+            "true_positives": 317,
+            "false_positives": 481,
+            "recall": 0.8854748603351955,
+            "precision": 0.39724310776942356,
+            "average_precision": 0.8060584767125204,
+            "threshold": 0.5573492158140775,
+            "merchant_count": 2246,
+            "merchant_false_positives": 0,
+            "merchant_fpr": 0.0,
+            "imitator_count": 174,
+            "imitator_recall": 0.9482758620689655
+          }
+        }
+      }
+    },
+    {
+      "seed": 2027,
+      "size": 30000,
+      "dataset_sha256": "91071b6928fdd36671dcef1acfc8a9c0021d616f0bf96f53a478caec5100e209",
+      "train_cut_seconds": 1555200,
+      "validation_cut_seconds": 2073600,
+      "counts": {
+        "train": 17997,
+        "validation": 6084,
+        "test": 5919
+      },
+      "features_seconds": 9.131983400002355,
+      "training_seconds": {
+        "R1_history": 0.4567098999978043,
+        "R1_history_akwe": 0.43354930001078174
+      },
+      "benchmark": {
+        "device": "CPU",
+        "requests": 200,
+        "warmup": 20,
+        "p50_ms": 0.21294999169185758,
+        "p95_ms": 0.4279299973859451,
+        "includes": "caractéristiques locales 7 jours + score, historique déjà chargé ; hors UI et réseau"
+      },
+      "models": {
+        "R0_rules": {
+          "validation": {
+            "n": 6084,
+            "fraud_count": 355,
+            "alerts": 2734,
+            "true_positives": 284,
+            "false_positives": 2450,
+            "recall": 0.8,
+            "precision": 0.10387710314557425,
+            "average_precision": 0.06822821139284106,
+            "threshold": 0.6334822409373856,
+            "merchant_count": 2341,
+            "merchant_false_positives": 0,
+            "merchant_fpr": 0.0,
+            "imitator_count": 157,
+            "imitator_recall": 0.6815286624203821
+          },
+          "test": {
+            "n": 5919,
+            "fraud_count": 356,
+            "alerts": 2697,
+            "true_positives": 288,
+            "false_positives": 2409,
+            "recall": 0.8089887640449438,
+            "precision": 0.1067853170189099,
+            "average_precision": 0.06973437045872913,
+            "threshold": 0.6334822409373856,
+            "merchant_count": 2198,
+            "merchant_false_positives": 0,
+            "merchant_fpr": 0.0,
+            "imitator_count": 161,
+            "imitator_recall": 0.7515527950310559
+          }
+        },
+        "R1_history": {
+          "validation": {
+            "n": 6084,
+            "fraud_count": 355,
+            "alerts": 1353,
+            "true_positives": 284,
+            "false_positives": 1069,
+            "recall": 0.8,
+            "precision": 0.2099039172209904,
+            "average_precision": 0.2926673173413254,
+            "threshold": 0.5976208855296032,
+            "merchant_count": 2341,
+            "merchant_false_positives": 0,
+            "merchant_fpr": 0.0,
+            "imitator_count": 157,
+            "imitator_recall": 0.8598726114649682
+          },
+          "test": {
+            "n": 5919,
+            "fraud_count": 356,
+            "alerts": 1383,
+            "true_positives": 269,
+            "false_positives": 1114,
+            "recall": 0.7556179775280899,
+            "precision": 0.19450469992769343,
+            "average_precision": 0.2416739826821609,
+            "threshold": 0.5976208855296032,
+            "merchant_count": 2198,
+            "merchant_false_positives": 0,
+            "merchant_fpr": 0.0,
+            "imitator_count": 161,
+            "imitator_recall": 0.7515527950310559
+          }
+        },
+        "R1_history_akwe": {
+          "validation": {
+            "n": 6084,
+            "fraud_count": 355,
+            "alerts": 473,
+            "true_positives": 284,
+            "false_positives": 189,
+            "recall": 0.8,
+            "precision": 0.6004228329809725,
+            "average_precision": 0.8229770488149573,
+            "threshold": 0.6551206384301039,
+            "merchant_count": 2341,
+            "merchant_false_positives": 0,
+            "merchant_fpr": 0.0,
+            "imitator_count": 157,
+            "imitator_recall": 0.89171974522293
+          },
+          "test": {
+            "n": 5919,
+            "fraud_count": 356,
+            "alerts": 413,
+            "true_positives": 268,
+            "false_positives": 145,
+            "recall": 0.7528089887640449,
+            "precision": 0.648910411622276,
+            "average_precision": 0.7957667954086439,
+            "threshold": 0.6551206384301039,
+            "merchant_count": 2198,
+            "merchant_false_positives": 0,
+            "merchant_fpr": 0.0,
+            "imitator_count": 161,
+            "imitator_recall": 0.8385093167701864
+          }
+        }
+      }
+    },
+    {
+      "seed": 2028,
+      "size": 30000,
+      "dataset_sha256": "7a96b6efc3d7a4d24de6429e585cdb55f3b51e2d1d43037a7483472c8dd50c64",
+      "train_cut_seconds": 1555200,
+      "validation_cut_seconds": 2073600,
+      "counts": {
+        "train": 17871,
+        "validation": 6088,
+        "test": 6041
+      },
+      "features_seconds": 8.325499700004002,
+      "training_seconds": {
+        "R1_history": 0.3318528999807313,
+        "R1_history_akwe": 0.3191308000241406
+      },
+      "benchmark": {
+        "device": "CPU",
+        "requests": 200,
+        "warmup": 20,
+        "p50_ms": 0.08620000153314322,
+        "p95_ms": 0.27770501619670535,
+        "includes": "caractéristiques locales 7 jours + score, historique déjà chargé ; hors UI et réseau"
+      },
+      "models": {
+        "R0_rules": {
+          "validation": {
+            "n": 6088,
+            "fraud_count": 419,
+            "alerts": 2660,
+            "true_positives": 336,
+            "false_positives": 2324,
+            "recall": 0.801909307875895,
+            "precision": 0.12631578947368421,
+            "average_precision": 0.08609717521193155,
+            "threshold": 0.6433328738800828,
+            "merchant_count": 2313,
+            "merchant_false_positives": 0,
+            "merchant_fpr": 0.0,
+            "imitator_count": 180,
+            "imitator_recall": 0.7833333333333333
+          },
+          "test": {
+            "n": 6041,
+            "fraud_count": 384,
+            "alerts": 2712,
+            "true_positives": 285,
+            "false_positives": 2427,
+            "recall": 0.7421875,
+            "precision": 0.10508849557522124,
+            "average_precision": 0.07563754897511038,
+            "threshold": 0.6433328738800828,
+            "merchant_count": 2208,
+            "merchant_false_positives": 0,
+            "merchant_fpr": 0.0,
+            "imitator_count": 160,
+            "imitator_recall": 0.88125
+          }
+        },
+        "R1_history": {
+          "validation": {
+            "n": 6088,
+            "fraud_count": 419,
+            "alerts": 1472,
+            "true_positives": 336,
+            "false_positives": 1136,
+            "recall": 0.801909307875895,
+            "precision": 0.22826086956521738,
+            "average_precision": 0.24241659128902301,
+            "threshold": 0.5737851974051337,
+            "merchant_count": 2313,
+            "merchant_false_positives": 6,
+            "merchant_fpr": 0.0025940337224383916,
+            "imitator_count": 180,
+            "imitator_recall": 0.8444444444444444
+          },
+          "test": {
+            "n": 6041,
+            "fraud_count": 384,
+            "alerts": 1489,
+            "true_positives": 324,
+            "false_positives": 1165,
+            "recall": 0.84375,
+            "precision": 0.21759570181329752,
+            "average_precision": 0.23342337742172312,
+            "threshold": 0.5737851974051337,
+            "merchant_count": 2208,
+            "merchant_false_positives": 1,
+            "merchant_fpr": 0.0004528985507246377,
+            "imitator_count": 160,
+            "imitator_recall": 0.94375
+          }
+        },
+        "R1_history_akwe": {
+          "validation": {
+            "n": 6088,
+            "fraud_count": 419,
+            "alerts": 462,
+            "true_positives": 336,
+            "false_positives": 126,
+            "recall": 0.801909307875895,
+            "precision": 0.7272727272727273,
+            "average_precision": 0.8810479733956281,
+            "threshold": 0.6804785294811403,
+            "merchant_count": 2313,
+            "merchant_false_positives": 0,
+            "merchant_fpr": 0.0,
+            "imitator_count": 180,
+            "imitator_recall": 1.0
+          },
+          "test": {
+            "n": 6041,
+            "fraud_count": 384,
+            "alerts": 366,
+            "true_positives": 249,
+            "false_positives": 117,
+            "recall": 0.6484375,
+            "precision": 0.680327868852459,
+            "average_precision": 0.8020490623061404,
+            "threshold": 0.6804785294811403,
+            "merchant_count": 2208,
+            "merchant_false_positives": 0,
+            "merchant_fpr": 0.0,
+            "imitator_count": 160,
+            "imitator_recall": 1.0
+          }
+        }
+      }
+    }
+  ]
+}

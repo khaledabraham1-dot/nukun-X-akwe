@@ -1,0 +1,2804 @@
+{
+  "schema_version": 1,
+  "protocol": {
+    "protocol_id": "stress-v1-2026-11-22",
+    "simulation_version": "stress_v1",
+    "seeds": [
+      73101,
+      73102,
+      73103
+    ],
+    "transactions_per_seed": 18000,
+    "days": 30,
+    "train_cut_seconds": 1555200,
+    "validation_cut_seconds": 2073600,
+    "new_accounts_activation_seconds": 2073600,
+    "recall_target": 0.8,
+    "graph_snapshot_seconds": 43200,
+    "graph_hidden_dim": 24,
+    "graph_epochs": 20,
+    "graph_learning_rate": 0.003,
+    "logistic_steps": 600,
+    "bootstrap_repeats": 400,
+    "context_blackout": "zero_context_for_all_test_transactions_without_retraining",
+    "variants": [
+      "rules",
+      "logistic_history",
+      "logistic_akwe",
+      "mlp_history",
+      "mlp_akwe",
+      "sage_history",
+      "sage_akwe"
+    ],
+    "policy": "Fixed before first stress run. No model, threshold or seed selected on test. All variants and runs are reported."
+  },
+  "protocol_sha256": "e3fa7f99db81a8ec59ab1b914de09eafd6b1b57132cfa5314e1d6a8027894f45",
+  "sources": {
+    "sha256": "371c7ab60e35797b22e2cb88d7cd25655588cc9a2a84a26b63fbf2deca63a1e4",
+    "files": [
+      "features.py",
+      "graph.py",
+      "model.py",
+      "simulation.py",
+      "stress_data.py",
+      "stress_experiment.py",
+      "uncertainty.py"
+    ],
+    "line_endings": "LF"
+  },
+  "graph_status": "executed",
+  "environment": {
+    "python": "3.12.10",
+    "numpy": "2.5.3",
+    "torch": "2.15.0+cpu",
+    "device": "cpu",
+    "gpu_name": null
+  },
+  "runs": [
+    {
+      "seed": 73101,
+      "size": 18000,
+      "dataset_sha256": "62c7e98ecca4bec4fbff7301db9342e1e01d5abee9fe80d0136d158fda20848f",
+      "counts": {
+        "train": 10768,
+        "validation": 3603,
+        "test": 3629
+      },
+      "models": {
+        "rules": {
+          "threshold": 0.5460063160882833,
+          "validation": {
+            "n": 3603,
+            "fraud_count": 576,
+            "alerts": 2558,
+            "true_positives": 461,
+            "false_positives": 2097,
+            "recall": 0.8003472222222222,
+            "precision": 0.1802189210320563,
+            "average_precision": 0.15163206178873698,
+            "threshold": 0.5460063160882833,
+            "merchant_count": 1273,
+            "merchant_false_positives": 938,
+            "merchant_fpr": 0.7368421052631579,
+            "imitator_count": 276,
+            "imitator_recall": 0.75
+          },
+          "test": {
+            "n": 3629,
+            "fraud_count": 498,
+            "alerts": 2422,
+            "true_positives": 353,
+            "false_positives": 2069,
+            "recall": 0.7088353413654619,
+            "precision": 0.14574731626754747,
+            "average_precision": 0.13355758823837535,
+            "threshold": 0.5460063160882833,
+            "merchant_count": 1432,
+            "merchant_false_positives": 1097,
+            "merchant_fpr": 0.7660614525139665,
+            "imitator_count": 263,
+            "imitator_recall": 0.6311787072243346
+          },
+          "blackout_test": {
+            "n": 3629,
+            "fraud_count": 498,
+            "alerts": 2422,
+            "true_positives": 353,
+            "false_positives": 2069,
+            "recall": 0.7088353413654619,
+            "precision": 0.14574731626754747,
+            "average_precision": 0.13355758823837535,
+            "threshold": 0.5460063160882833,
+            "merchant_count": 1432,
+            "merchant_false_positives": 1097,
+            "merchant_fpr": 0.7660614525139665,
+            "imitator_count": 263,
+            "imitator_recall": 0.6311787072243346
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 465,
+              "positive_count": 56,
+              "negative_count": 409,
+              "recall": 0.25,
+              "fpr": 0.5256723716381418,
+              "alert_rate": 0.4924731182795699
+            },
+            "new_merchants": {
+              "n": 288,
+              "positive_count": 0,
+              "negative_count": 288,
+              "recall": null,
+              "fpr": 0.6527777777777778,
+              "alert_rate": 0.6527777777777778
+            },
+            "merchants_without_akwe": {
+              "n": 514,
+              "positive_count": 0,
+              "negative_count": 514,
+              "recall": null,
+              "fpr": 0.6634241245136187,
+              "alert_rate": 0.6634241245136187
+            },
+            "imitators": {
+              "n": 263,
+              "positive_count": 263,
+              "negative_count": 0,
+              "recall": 0.6311787072243346,
+              "fpr": null,
+              "alert_rate": 0.6311787072243346
+            }
+          }
+        },
+        "logistic_history": {
+          "threshold": 0.5023586084154273,
+          "validation": {
+            "n": 3603,
+            "fraud_count": 576,
+            "alerts": 1790,
+            "true_positives": 461,
+            "false_positives": 1329,
+            "recall": 0.8003472222222222,
+            "precision": 0.25754189944134076,
+            "average_precision": 0.2715125919236205,
+            "threshold": 0.5023586084154273,
+            "merchant_count": 1273,
+            "merchant_false_positives": 1067,
+            "merchant_fpr": 0.8381775333857031,
+            "imitator_count": 276,
+            "imitator_recall": 0.8333333333333334
+          },
+          "test": {
+            "n": 3629,
+            "fraud_count": 498,
+            "alerts": 1745,
+            "true_positives": 377,
+            "false_positives": 1368,
+            "recall": 0.7570281124497992,
+            "precision": 0.2160458452722063,
+            "average_precision": 0.2015687225890923,
+            "threshold": 0.5023586084154273,
+            "merchant_count": 1432,
+            "merchant_false_positives": 1118,
+            "merchant_fpr": 0.7807262569832403,
+            "imitator_count": 263,
+            "imitator_recall": 0.8136882129277566
+          },
+          "blackout_test": {
+            "n": 3629,
+            "fraud_count": 498,
+            "alerts": 1745,
+            "true_positives": 377,
+            "false_positives": 1368,
+            "recall": 0.7570281124497992,
+            "precision": 0.2160458452722063,
+            "average_precision": 0.2015687225890923,
+            "threshold": 0.5023586084154273,
+            "merchant_count": 1432,
+            "merchant_false_positives": 1118,
+            "merchant_fpr": 0.7807262569832403,
+            "imitator_count": 263,
+            "imitator_recall": 0.8136882129277566
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 465,
+              "positive_count": 56,
+              "negative_count": 409,
+              "recall": 0.5,
+              "fpr": 0.5354523227383863,
+              "alert_rate": 0.5311827956989247
+            },
+            "new_merchants": {
+              "n": 288,
+              "positive_count": 0,
+              "negative_count": 288,
+              "recall": null,
+              "fpr": 0.6840277777777778,
+              "alert_rate": 0.6840277777777778
+            },
+            "merchants_without_akwe": {
+              "n": 514,
+              "positive_count": 0,
+              "negative_count": 514,
+              "recall": null,
+              "fpr": 0.8210116731517509,
+              "alert_rate": 0.8210116731517509
+            },
+            "imitators": {
+              "n": 263,
+              "positive_count": 263,
+              "negative_count": 0,
+              "recall": 0.8136882129277566,
+              "fpr": null,
+              "alert_rate": 0.8136882129277566
+            }
+          }
+        },
+        "logistic_akwe": {
+          "threshold": 0.5116998932579888,
+          "validation": {
+            "n": 3603,
+            "fraud_count": 576,
+            "alerts": 1796,
+            "true_positives": 461,
+            "false_positives": 1335,
+            "recall": 0.8003472222222222,
+            "precision": 0.2566815144766147,
+            "average_precision": 0.2520785851766659,
+            "threshold": 0.5116998932579888,
+            "merchant_count": 1273,
+            "merchant_false_positives": 1073,
+            "merchant_fpr": 0.842890809112333,
+            "imitator_count": 276,
+            "imitator_recall": 0.8079710144927537
+          },
+          "test": {
+            "n": 3629,
+            "fraud_count": 498,
+            "alerts": 1744,
+            "true_positives": 382,
+            "false_positives": 1362,
+            "recall": 0.7670682730923695,
+            "precision": 0.2190366972477064,
+            "average_precision": 0.19139887709185993,
+            "threshold": 0.5116998932579888,
+            "merchant_count": 1432,
+            "merchant_false_positives": 1118,
+            "merchant_fpr": 0.7807262569832403,
+            "imitator_count": 263,
+            "imitator_recall": 0.8250950570342205
+          },
+          "blackout_test": {
+            "n": 3629,
+            "fraud_count": 498,
+            "alerts": 1650,
+            "true_positives": 356,
+            "false_positives": 1294,
+            "recall": 0.714859437751004,
+            "precision": 0.21575757575757576,
+            "average_precision": 0.20423780984867704,
+            "threshold": 0.5116998932579888,
+            "merchant_count": 1432,
+            "merchant_false_positives": 1059,
+            "merchant_fpr": 0.7395251396648045,
+            "imitator_count": 263,
+            "imitator_recall": 0.7756653992395437
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 465,
+              "positive_count": 56,
+              "negative_count": 409,
+              "recall": 0.5,
+              "fpr": 0.530562347188264,
+              "alert_rate": 0.5268817204301075
+            },
+            "new_merchants": {
+              "n": 288,
+              "positive_count": 0,
+              "negative_count": 288,
+              "recall": null,
+              "fpr": 0.6805555555555556,
+              "alert_rate": 0.6805555555555556
+            },
+            "merchants_without_akwe": {
+              "n": 514,
+              "positive_count": 0,
+              "negative_count": 514,
+              "recall": null,
+              "fpr": 0.7840466926070039,
+              "alert_rate": 0.7840466926070039
+            },
+            "imitators": {
+              "n": 263,
+              "positive_count": 263,
+              "negative_count": 0,
+              "recall": 0.8250950570342205,
+              "fpr": null,
+              "alert_rate": 0.8250950570342205
+            }
+          }
+        },
+        "mlp_history": {
+          "threshold": 0.6631948947906494,
+          "validation": {
+            "n": 3603,
+            "fraud_count": 576,
+            "alerts": 1251,
+            "true_positives": 461,
+            "false_positives": 790,
+            "recall": 0.8003472222222222,
+            "precision": 0.36850519584332536,
+            "average_precision": 0.48316017561819496,
+            "threshold": 0.6631948947906494,
+            "merchant_count": 1273,
+            "merchant_false_positives": 638,
+            "merchant_fpr": 0.5011783189316575,
+            "imitator_count": 276,
+            "imitator_recall": 0.7898550724637681
+          },
+          "test": {
+            "n": 3629,
+            "fraud_count": 498,
+            "alerts": 1253,
+            "true_positives": 364,
+            "false_positives": 889,
+            "recall": 0.7309236947791165,
+            "precision": 0.2905027932960894,
+            "average_precision": 0.38355652625187303,
+            "threshold": 0.6631948947906494,
+            "merchant_count": 1432,
+            "merchant_false_positives": 773,
+            "merchant_fpr": 0.539804469273743,
+            "imitator_count": 263,
+            "imitator_recall": 0.6806083650190115
+          },
+          "blackout_test": {
+            "n": 3629,
+            "fraud_count": 498,
+            "alerts": 1253,
+            "true_positives": 364,
+            "false_positives": 889,
+            "recall": 0.7309236947791165,
+            "precision": 0.2905027932960894,
+            "average_precision": 0.38355652625187303,
+            "threshold": 0.6631948947906494,
+            "merchant_count": 1432,
+            "merchant_false_positives": 773,
+            "merchant_fpr": 0.539804469273743,
+            "imitator_count": 263,
+            "imitator_recall": 0.6806083650190115
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 465,
+              "positive_count": 56,
+              "negative_count": 409,
+              "recall": 0.3392857142857143,
+              "fpr": 0.2713936430317848,
+              "alert_rate": 0.27956989247311825
+            },
+            "new_merchants": {
+              "n": 288,
+              "positive_count": 0,
+              "negative_count": 288,
+              "recall": null,
+              "fpr": 0.3333333333333333,
+              "alert_rate": 0.3333333333333333
+            },
+            "merchants_without_akwe": {
+              "n": 514,
+              "positive_count": 0,
+              "negative_count": 514,
+              "recall": null,
+              "fpr": 0.4571984435797665,
+              "alert_rate": 0.4571984435797665
+            },
+            "imitators": {
+              "n": 263,
+              "positive_count": 263,
+              "negative_count": 0,
+              "recall": 0.6806083650190115,
+              "fpr": null,
+              "alert_rate": 0.6806083650190115
+            }
+          }
+        },
+        "mlp_akwe": {
+          "threshold": 0.532119631767273,
+          "validation": {
+            "n": 3603,
+            "fraud_count": 576,
+            "alerts": 1146,
+            "true_positives": 461,
+            "false_positives": 685,
+            "recall": 0.8003472222222222,
+            "precision": 0.40226876090750435,
+            "average_precision": 0.47978102742157114,
+            "threshold": 0.532119631767273,
+            "merchant_count": 1273,
+            "merchant_false_positives": 584,
+            "merchant_fpr": 0.4587588373919874,
+            "imitator_count": 276,
+            "imitator_recall": 0.7753623188405797
+          },
+          "test": {
+            "n": 3629,
+            "fraud_count": 498,
+            "alerts": 1082,
+            "true_positives": 288,
+            "false_positives": 794,
+            "recall": 0.5783132530120482,
+            "precision": 0.266173752310536,
+            "average_precision": 0.27035722687098573,
+            "threshold": 0.532119631767273,
+            "merchant_count": 1432,
+            "merchant_false_positives": 635,
+            "merchant_fpr": 0.44343575418994413,
+            "imitator_count": 263,
+            "imitator_recall": 0.5665399239543726
+          },
+          "blackout_test": {
+            "n": 3629,
+            "fraud_count": 498,
+            "alerts": 1675,
+            "true_positives": 381,
+            "false_positives": 1294,
+            "recall": 0.7650602409638554,
+            "precision": 0.22746268656716417,
+            "average_precision": 0.23712486873802457,
+            "threshold": 0.532119631767273,
+            "merchant_count": 1432,
+            "merchant_false_positives": 1086,
+            "merchant_fpr": 0.7583798882681564,
+            "imitator_count": 263,
+            "imitator_recall": 0.7756653992395437
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 465,
+              "positive_count": 56,
+              "negative_count": 409,
+              "recall": 0.625,
+              "fpr": 0.5916870415647921,
+              "alert_rate": 0.5956989247311828
+            },
+            "new_merchants": {
+              "n": 288,
+              "positive_count": 0,
+              "negative_count": 288,
+              "recall": null,
+              "fpr": 0.71875,
+              "alert_rate": 0.71875
+            },
+            "merchants_without_akwe": {
+              "n": 514,
+              "positive_count": 0,
+              "negative_count": 514,
+              "recall": null,
+              "fpr": 0.7782101167315175,
+              "alert_rate": 0.7782101167315175
+            },
+            "imitators": {
+              "n": 263,
+              "positive_count": 263,
+              "negative_count": 0,
+              "recall": 0.5665399239543726,
+              "fpr": null,
+              "alert_rate": 0.5665399239543726
+            }
+          }
+        },
+        "sage_history": {
+          "threshold": 0.6519094705581665,
+          "validation": {
+            "n": 3603,
+            "fraud_count": 576,
+            "alerts": 691,
+            "true_positives": 461,
+            "false_positives": 230,
+            "recall": 0.8003472222222222,
+            "precision": 0.6671490593342981,
+            "average_precision": 0.7823617155861011,
+            "threshold": 0.6519094705581665,
+            "merchant_count": 1273,
+            "merchant_false_positives": 210,
+            "merchant_fpr": 0.16496465043205027,
+            "imitator_count": 276,
+            "imitator_recall": 0.7717391304347826
+          },
+          "test": {
+            "n": 3629,
+            "fraud_count": 498,
+            "alerts": 582,
+            "true_positives": 329,
+            "false_positives": 253,
+            "recall": 0.6606425702811245,
+            "precision": 0.5652920962199313,
+            "average_precision": 0.5334008697928381,
+            "threshold": 0.6519094705581665,
+            "merchant_count": 1432,
+            "merchant_false_positives": 215,
+            "merchant_fpr": 0.15013966480446927,
+            "imitator_count": 263,
+            "imitator_recall": 0.6730038022813688
+          },
+          "blackout_test": {
+            "n": 3629,
+            "fraud_count": 498,
+            "alerts": 582,
+            "true_positives": 329,
+            "false_positives": 253,
+            "recall": 0.6606425702811245,
+            "precision": 0.5652920962199313,
+            "average_precision": 0.5334008697928381,
+            "threshold": 0.6519094705581665,
+            "merchant_count": 1432,
+            "merchant_false_positives": 215,
+            "merchant_fpr": 0.15013966480446927,
+            "imitator_count": 263,
+            "imitator_recall": 0.6730038022813688
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 465,
+              "positive_count": 56,
+              "negative_count": 409,
+              "recall": 0.8392857142857143,
+              "fpr": 0.32273838630806845,
+              "alert_rate": 0.3849462365591398
+            },
+            "new_merchants": {
+              "n": 288,
+              "positive_count": 0,
+              "negative_count": 288,
+              "recall": null,
+              "fpr": 0.3888888888888889,
+              "alert_rate": 0.3888888888888889
+            },
+            "merchants_without_akwe": {
+              "n": 514,
+              "positive_count": 0,
+              "negative_count": 514,
+              "recall": null,
+              "fpr": 0.11089494163424124,
+              "alert_rate": 0.11089494163424124
+            },
+            "imitators": {
+              "n": 263,
+              "positive_count": 263,
+              "negative_count": 0,
+              "recall": 0.6730038022813688,
+              "fpr": null,
+              "alert_rate": 0.6730038022813688
+            }
+          }
+        },
+        "sage_akwe": {
+          "threshold": 0.4233625829219818,
+          "validation": {
+            "n": 3603,
+            "fraud_count": 576,
+            "alerts": 640,
+            "true_positives": 461,
+            "false_positives": 179,
+            "recall": 0.8003472222222222,
+            "precision": 0.7203125,
+            "average_precision": 0.8014618734796535,
+            "threshold": 0.4233625829219818,
+            "merchant_count": 1273,
+            "merchant_false_positives": 155,
+            "merchant_fpr": 0.12175962293794187,
+            "imitator_count": 276,
+            "imitator_recall": 0.7572463768115942
+          },
+          "test": {
+            "n": 3629,
+            "fraud_count": 498,
+            "alerts": 610,
+            "true_positives": 351,
+            "false_positives": 259,
+            "recall": 0.7048192771084337,
+            "precision": 0.5754098360655737,
+            "average_precision": 0.6288456011452556,
+            "threshold": 0.4233625829219818,
+            "merchant_count": 1432,
+            "merchant_false_positives": 238,
+            "merchant_fpr": 0.16620111731843576,
+            "imitator_count": 263,
+            "imitator_recall": 0.7110266159695817
+          },
+          "blackout_test": {
+            "n": 3629,
+            "fraud_count": 498,
+            "alerts": 861,
+            "true_positives": 420,
+            "false_positives": 441,
+            "recall": 0.8433734939759037,
+            "precision": 0.4878048780487805,
+            "average_precision": 0.618723616068029,
+            "threshold": 0.4233625829219818,
+            "merchant_count": 1432,
+            "merchant_false_positives": 405,
+            "merchant_fpr": 0.28282122905027934,
+            "imitator_count": 263,
+            "imitator_recall": 0.7984790874524715
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 465,
+              "positive_count": 56,
+              "negative_count": 409,
+              "recall": 0.9464285714285714,
+              "fpr": 0.4474327628361858,
+              "alert_rate": 0.5075268817204301
+            },
+            "new_merchants": {
+              "n": 288,
+              "positive_count": 0,
+              "negative_count": 288,
+              "recall": null,
+              "fpr": 0.5729166666666666,
+              "alert_rate": 0.5729166666666666
+            },
+            "merchants_without_akwe": {
+              "n": 514,
+              "positive_count": 0,
+              "negative_count": 514,
+              "recall": null,
+              "fpr": 0.21595330739299612,
+              "alert_rate": 0.21595330739299612
+            },
+            "imitators": {
+              "n": 263,
+              "positive_count": 263,
+              "negative_count": 0,
+              "recall": 0.7110266159695817,
+              "fpr": null,
+              "alert_rate": 0.7110266159695817
+            }
+          }
+        }
+      },
+      "training": {
+        "logistic_history": {
+          "seconds": 0.11123069998575374,
+          "device": "cpu",
+          "parameters": 10
+        },
+        "logistic_akwe": {
+          "seconds": 0.10807000001659617,
+          "device": "cpu",
+          "parameters": 13
+        },
+        "mlp_history": {
+          "seconds": 1.9052267000079155,
+          "epochs": 20,
+          "loss_by_epoch": [
+            0.6186366164022021,
+            0.538740282257398,
+            0.5132899118794335,
+            0.5022695809602737,
+            0.4988551785548528,
+            0.49255171997679603,
+            0.4885324090719223,
+            0.48725255495972103,
+            0.48333512412177193,
+            0.47867150025235283,
+            0.4818267019258605,
+            0.4865436471170849,
+            0.47178564551803803,
+            0.4616362758808666,
+            0.46496882372432286,
+            0.4511202772458394,
+            0.44713666786750156,
+            0.44516239398055607,
+            0.4435196816921234,
+            0.4597094530860583
+          ],
+          "parameters": 3841,
+          "device": "cpu",
+          "peak_vram_bytes": null
+        },
+        "mlp_akwe": {
+          "seconds": 2.0774907000013627,
+          "epochs": 20,
+          "loss_by_epoch": [
+            0.6090354472398758,
+            0.5180212333798409,
+            0.49328915609253776,
+            0.4745907766951455,
+            0.4599914095467991,
+            0.44673066751824486,
+            0.43144451164537007,
+            0.43122005297078025,
+            0.42113834619522095,
+            0.4128413274884224,
+            0.4123451229598787,
+            0.41148388799693847,
+            0.39529621021615136,
+            0.39200398491488564,
+            0.39243676099512315,
+            0.3820602736539311,
+            0.3872370786137051,
+            0.37174902939134175,
+            0.3906887215044763,
+            0.36674584199984867
+          ],
+          "parameters": 3985,
+          "device": "cpu",
+          "peak_vram_bytes": null
+        },
+        "sage_history": {
+          "seconds": 3.0980374999926426,
+          "epochs": 20,
+          "loss_by_epoch": [
+            0.6122684975465139,
+            0.5231392416689131,
+            0.46916746265358394,
+            0.4301555280884107,
+            0.4406643302904235,
+            0.38284041898118126,
+            0.372042592200968,
+            0.34220095309946275,
+            0.33099884746803176,
+            0.2956722291807334,
+            0.36556591134932304,
+            0.3015659029285113,
+            0.342881725066238,
+            0.2739895433187485,
+            0.2594408570892281,
+            0.2595161526567406,
+            0.31456026724643177,
+            0.2829921829203765,
+            0.30574548492829007,
+            0.3043895653552479
+          ],
+          "parameters": 3841,
+          "device": "cpu",
+          "peak_vram_bytes": null
+        },
+        "sage_akwe": {
+          "seconds": 3.0937725999974646,
+          "epochs": 20,
+          "loss_by_epoch": [
+            0.5993176798025767,
+            0.506745408806536,
+            0.46578920053111184,
+            0.44157200968927807,
+            0.4046668940120273,
+            0.37769455048773026,
+            0.3371310830116272,
+            0.33390236190623707,
+            0.33047275907463497,
+            0.30813070717785096,
+            0.27353421598672867,
+            0.2611836940050125,
+            0.30686071639259654,
+            0.240892275960909,
+            0.23686330392956734,
+            0.2728754950480329,
+            0.247075611518489,
+            0.2602846895654996,
+            0.22023542929026815,
+            0.22593879513442516
+          ],
+          "parameters": 3985,
+          "device": "cpu",
+          "peak_vram_bytes": null
+        }
+      },
+      "uncertainty": {
+        "unit": "receiver_account",
+        "groups": 554,
+        "repeats": 400,
+        "models": {
+          "rules": {
+            "recall": {
+              "low": 0.541829521060034,
+              "high": 0.8861090372280855,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.0852007798143767,
+              "high": 0.21089091778787505,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.6623900551318378,
+              "high": 0.8642780604371179,
+              "valid_repeats": 400
+            }
+          },
+          "logistic_history": {
+            "recall": {
+              "low": 0.5945181197478991,
+              "high": 0.8642282433818295,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.12442279969002495,
+              "high": 0.32866780381221966,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.6983615108327013,
+              "high": 0.8505643610943067,
+              "valid_repeats": 400
+            }
+          },
+          "logistic_akwe": {
+            "recall": {
+              "low": 0.6245408598221898,
+              "high": 0.8737816585966871,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.12873205412073394,
+              "high": 0.3379376587204063,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.6921342056597373,
+              "high": 0.8511283590955124,
+              "valid_repeats": 400
+            }
+          },
+          "mlp_history": {
+            "recall": {
+              "low": 0.611296912401687,
+              "high": 0.8270564795564795,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.19133265275647984,
+              "high": 0.4007932204372789,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.45157841268248633,
+              "high": 0.6390834544891375,
+              "valid_repeats": 400
+            }
+          },
+          "mlp_akwe": {
+            "recall": {
+              "low": 0.44576186519476924,
+              "high": 0.7065824938512852,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.15497704658525555,
+              "high": 0.3964780044941109,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.3333333333333333,
+              "high": 0.5562984777706108,
+              "valid_repeats": 400
+            }
+          },
+          "sage_history": {
+            "recall": {
+              "low": 0.5063300126217093,
+              "high": 0.8043531369494406,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.41820828113667835,
+              "high": 0.7172756484377852,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.0931650989121459,
+              "high": 0.21008695069470285,
+              "valid_repeats": 400
+            }
+          },
+          "sage_akwe": {
+            "recall": {
+              "low": 0.5307252258610955,
+              "high": 0.8629945579448891,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.40361863205788023,
+              "high": 0.7505176970268994,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.09531009192361924,
+              "high": 0.24217660907607885,
+              "valid_repeats": 400
+            }
+          }
+        },
+        "paired_context_deltas": {
+          "logistic": {
+            "recall": {
+              "low": -0.026621035112909603,
+              "high": 0.056889150487002375,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": -0.029696929787776858,
+              "high": 0.025798029265990095,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": -0.006107508237615305,
+              "high": 0.015093826856287521,
+              "valid_repeats": 400
+            }
+          },
+          "mlp": {
+            "recall": {
+              "low": -0.30445896683560064,
+              "high": 0.040820508531281295,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": -0.2695493744164818,
+              "high": 0.062108503644181794,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": -0.10199435633984882,
+              "high": 0.062422659645039465,
+              "valid_repeats": 400
+            }
+          },
+          "sage": {
+            "recall": {
+              "low": -0.001719349442717133,
+              "high": 0.08953129224114618,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": -0.03030024427139097,
+              "high": 0.0724589885838364,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": -0.06940016242277378,
+              "high": 0.08738897426690193,
+              "valid_repeats": 400
+            }
+          }
+        }
+      },
+      "total_seconds": 17.171332800004166
+    },
+    {
+      "seed": 73102,
+      "size": 18000,
+      "dataset_sha256": "af537757f4997b6916ec814d75d48c4bd904e56a5b1d27f7ece7fb43282af58e",
+      "counts": {
+        "train": 10908,
+        "validation": 3545,
+        "test": 3547
+      },
+      "models": {
+        "rules": {
+          "threshold": 0.5720407586820512,
+          "validation": {
+            "n": 3545,
+            "fraud_count": 531,
+            "alerts": 2060,
+            "true_positives": 425,
+            "false_positives": 1635,
+            "recall": 0.800376647834275,
+            "precision": 0.20631067961165048,
+            "average_precision": 0.16899554360591654,
+            "threshold": 0.5720407586820512,
+            "merchant_count": 1430,
+            "merchant_false_positives": 868,
+            "merchant_fpr": 0.606993006993007,
+            "imitator_count": 333,
+            "imitator_recall": 0.7267267267267268
+          },
+          "test": {
+            "n": 3547,
+            "fraud_count": 520,
+            "alerts": 1985,
+            "true_positives": 426,
+            "false_positives": 1559,
+            "recall": 0.8192307692307692,
+            "precision": 0.2146095717884131,
+            "average_precision": 0.16611551299804744,
+            "threshold": 0.5720407586820512,
+            "merchant_count": 1494,
+            "merchant_false_positives": 912,
+            "merchant_fpr": 0.6104417670682731,
+            "imitator_count": 319,
+            "imitator_recall": 0.7836990595611285
+          },
+          "blackout_test": {
+            "n": 3547,
+            "fraud_count": 520,
+            "alerts": 1985,
+            "true_positives": 426,
+            "false_positives": 1559,
+            "recall": 0.8192307692307692,
+            "precision": 0.2146095717884131,
+            "average_precision": 0.16611551299804744,
+            "threshold": 0.5720407586820512,
+            "merchant_count": 1494,
+            "merchant_false_positives": 912,
+            "merchant_fpr": 0.6104417670682731,
+            "imitator_count": 319,
+            "imitator_recall": 0.7836990595611285
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 444,
+              "positive_count": 58,
+              "negative_count": 386,
+              "recall": 0.6206896551724138,
+              "fpr": 0.4170984455958549,
+              "alert_rate": 0.4436936936936937
+            },
+            "new_merchants": {
+              "n": 274,
+              "positive_count": 0,
+              "negative_count": 274,
+              "recall": null,
+              "fpr": 0.5255474452554745,
+              "alert_rate": 0.5255474452554745
+            },
+            "merchants_without_akwe": {
+              "n": 327,
+              "positive_count": 0,
+              "negative_count": 327,
+              "recall": null,
+              "fpr": 0.5474006116207951,
+              "alert_rate": 0.5474006116207951
+            },
+            "imitators": {
+              "n": 319,
+              "positive_count": 319,
+              "negative_count": 0,
+              "recall": 0.7836990595611285,
+              "fpr": null,
+              "alert_rate": 0.7836990595611285
+            }
+          }
+        },
+        "logistic_history": {
+          "threshold": 0.5150887805604419,
+          "validation": {
+            "n": 3545,
+            "fraud_count": 531,
+            "alerts": 1866,
+            "true_positives": 425,
+            "false_positives": 1441,
+            "recall": 0.800376647834275,
+            "precision": 0.2277599142550911,
+            "average_precision": 0.19438857003446028,
+            "threshold": 0.5150887805604419,
+            "merchant_count": 1430,
+            "merchant_false_positives": 1249,
+            "merchant_fpr": 0.8734265734265734,
+            "imitator_count": 333,
+            "imitator_recall": 0.8888888888888888
+          },
+          "test": {
+            "n": 3547,
+            "fraud_count": 520,
+            "alerts": 1723,
+            "true_positives": 413,
+            "false_positives": 1310,
+            "recall": 0.7942307692307692,
+            "precision": 0.23969820081253626,
+            "average_precision": 0.19954789941080942,
+            "threshold": 0.5150887805604419,
+            "merchant_count": 1494,
+            "merchant_false_positives": 1183,
+            "merchant_fpr": 0.7918340026773761,
+            "imitator_count": 319,
+            "imitator_recall": 0.8557993730407524
+          },
+          "blackout_test": {
+            "n": 3547,
+            "fraud_count": 520,
+            "alerts": 1723,
+            "true_positives": 413,
+            "false_positives": 1310,
+            "recall": 0.7942307692307692,
+            "precision": 0.23969820081253626,
+            "average_precision": 0.19954789941080942,
+            "threshold": 0.5150887805604419,
+            "merchant_count": 1494,
+            "merchant_false_positives": 1183,
+            "merchant_fpr": 0.7918340026773761,
+            "imitator_count": 319,
+            "imitator_recall": 0.8557993730407524
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 444,
+              "positive_count": 58,
+              "negative_count": 386,
+              "recall": 0.41379310344827586,
+              "fpr": 0.41450777202072536,
+              "alert_rate": 0.4144144144144144
+            },
+            "new_merchants": {
+              "n": 274,
+              "positive_count": 0,
+              "negative_count": 274,
+              "recall": null,
+              "fpr": 0.5583941605839416,
+              "alert_rate": 0.5583941605839416
+            },
+            "merchants_without_akwe": {
+              "n": 327,
+              "positive_count": 0,
+              "negative_count": 327,
+              "recall": null,
+              "fpr": 0.72782874617737,
+              "alert_rate": 0.72782874617737
+            },
+            "imitators": {
+              "n": 319,
+              "positive_count": 319,
+              "negative_count": 0,
+              "recall": 0.8557993730407524,
+              "fpr": null,
+              "alert_rate": 0.8557993730407524
+            }
+          }
+        },
+        "logistic_akwe": {
+          "threshold": 0.5300756707738508,
+          "validation": {
+            "n": 3545,
+            "fraud_count": 531,
+            "alerts": 1787,
+            "true_positives": 425,
+            "false_positives": 1362,
+            "recall": 0.800376647834275,
+            "precision": 0.2378287632904309,
+            "average_precision": 0.2122738924685144,
+            "threshold": 0.5300756707738508,
+            "merchant_count": 1430,
+            "merchant_false_positives": 1211,
+            "merchant_fpr": 0.8468531468531468,
+            "imitator_count": 333,
+            "imitator_recall": 0.8858858858858859
+          },
+          "test": {
+            "n": 3547,
+            "fraud_count": 520,
+            "alerts": 1695,
+            "true_positives": 397,
+            "false_positives": 1298,
+            "recall": 0.7634615384615384,
+            "precision": 0.23421828908554573,
+            "average_precision": 0.18399201817506128,
+            "threshold": 0.5300756707738508,
+            "merchant_count": 1494,
+            "merchant_false_positives": 1177,
+            "merchant_fpr": 0.7878179384203481,
+            "imitator_count": 319,
+            "imitator_recall": 0.8463949843260188
+          },
+          "blackout_test": {
+            "n": 3547,
+            "fraud_count": 520,
+            "alerts": 1466,
+            "true_positives": 337,
+            "false_positives": 1129,
+            "recall": 0.6480769230769231,
+            "precision": 0.22987721691678034,
+            "average_precision": 0.1897472428438064,
+            "threshold": 0.5300756707738508,
+            "merchant_count": 1494,
+            "merchant_false_positives": 1023,
+            "merchant_fpr": 0.6847389558232931,
+            "imitator_count": 319,
+            "imitator_recall": 0.8056426332288401
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 444,
+              "positive_count": 58,
+              "negative_count": 386,
+              "recall": 0.4827586206896552,
+              "fpr": 0.4378238341968912,
+              "alert_rate": 0.4436936936936937
+            },
+            "new_merchants": {
+              "n": 274,
+              "positive_count": 0,
+              "negative_count": 274,
+              "recall": null,
+              "fpr": 0.5656934306569343,
+              "alert_rate": 0.5656934306569343
+            },
+            "merchants_without_akwe": {
+              "n": 327,
+              "positive_count": 0,
+              "negative_count": 327,
+              "recall": null,
+              "fpr": 0.6605504587155964,
+              "alert_rate": 0.6605504587155964
+            },
+            "imitators": {
+              "n": 319,
+              "positive_count": 319,
+              "negative_count": 0,
+              "recall": 0.8463949843260188,
+              "fpr": null,
+              "alert_rate": 0.8463949843260188
+            }
+          }
+        },
+        "mlp_history": {
+          "threshold": 0.544684112071991,
+          "validation": {
+            "n": 3545,
+            "fraud_count": 531,
+            "alerts": 1374,
+            "true_positives": 425,
+            "false_positives": 949,
+            "recall": 0.800376647834275,
+            "precision": 0.309315866084425,
+            "average_precision": 0.36212646385981084,
+            "threshold": 0.544684112071991,
+            "merchant_count": 1430,
+            "merchant_false_positives": 816,
+            "merchant_fpr": 0.5706293706293706,
+            "imitator_count": 333,
+            "imitator_recall": 0.7687687687687688
+          },
+          "test": {
+            "n": 3547,
+            "fraud_count": 520,
+            "alerts": 1356,
+            "true_positives": 403,
+            "false_positives": 953,
+            "recall": 0.775,
+            "precision": 0.2971976401179941,
+            "average_precision": 0.30505537990708187,
+            "threshold": 0.544684112071991,
+            "merchant_count": 1494,
+            "merchant_false_positives": 846,
+            "merchant_fpr": 0.5662650602409639,
+            "imitator_count": 319,
+            "imitator_recall": 0.8213166144200627
+          },
+          "blackout_test": {
+            "n": 3547,
+            "fraud_count": 520,
+            "alerts": 1356,
+            "true_positives": 403,
+            "false_positives": 953,
+            "recall": 0.775,
+            "precision": 0.2971976401179941,
+            "average_precision": 0.30505537990708187,
+            "threshold": 0.544684112071991,
+            "merchant_count": 1494,
+            "merchant_false_positives": 846,
+            "merchant_fpr": 0.5662650602409639,
+            "imitator_count": 319,
+            "imitator_recall": 0.8213166144200627
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 444,
+              "positive_count": 58,
+              "negative_count": 386,
+              "recall": 0.7068965517241379,
+              "fpr": 0.5673575129533679,
+              "alert_rate": 0.5855855855855856
+            },
+            "new_merchants": {
+              "n": 274,
+              "positive_count": 0,
+              "negative_count": 274,
+              "recall": null,
+              "fpr": 0.7299270072992701,
+              "alert_rate": 0.7299270072992701
+            },
+            "merchants_without_akwe": {
+              "n": 327,
+              "positive_count": 0,
+              "negative_count": 327,
+              "recall": null,
+              "fpr": 0.6880733944954128,
+              "alert_rate": 0.6880733944954128
+            },
+            "imitators": {
+              "n": 319,
+              "positive_count": 319,
+              "negative_count": 0,
+              "recall": 0.8213166144200627,
+              "fpr": null,
+              "alert_rate": 0.8213166144200627
+            }
+          }
+        },
+        "mlp_akwe": {
+          "threshold": 0.2575233578681946,
+          "validation": {
+            "n": 3545,
+            "fraud_count": 531,
+            "alerts": 1501,
+            "true_positives": 425,
+            "false_positives": 1076,
+            "recall": 0.800376647834275,
+            "precision": 0.28314457028647566,
+            "average_precision": 0.3429071302005518,
+            "threshold": 0.2575233578681946,
+            "merchant_count": 1430,
+            "merchant_false_positives": 906,
+            "merchant_fpr": 0.6335664335664336,
+            "imitator_count": 333,
+            "imitator_recall": 0.8348348348348348
+          },
+          "test": {
+            "n": 3547,
+            "fraud_count": 520,
+            "alerts": 1564,
+            "true_positives": 380,
+            "false_positives": 1184,
+            "recall": 0.7307692307692307,
+            "precision": 0.24296675191815856,
+            "average_precision": 0.21606002530813267,
+            "threshold": 0.2575233578681946,
+            "merchant_count": 1494,
+            "merchant_false_positives": 1029,
+            "merchant_fpr": 0.6887550200803213,
+            "imitator_count": 319,
+            "imitator_recall": 0.8213166144200627
+          },
+          "blackout_test": {
+            "n": 3547,
+            "fraud_count": 520,
+            "alerts": 1102,
+            "true_positives": 223,
+            "false_positives": 879,
+            "recall": 0.4288461538461538,
+            "precision": 0.20235934664246824,
+            "average_precision": 0.18689482287830153,
+            "threshold": 0.2575233578681946,
+            "merchant_count": 1494,
+            "merchant_false_positives": 811,
+            "merchant_fpr": 0.5428380187416332,
+            "imitator_count": 319,
+            "imitator_recall": 0.5705329153605015
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 444,
+              "positive_count": 58,
+              "negative_count": 386,
+              "recall": 0.8793103448275862,
+              "fpr": 0.6243523316062176,
+              "alert_rate": 0.6576576576576577
+            },
+            "new_merchants": {
+              "n": 274,
+              "positive_count": 0,
+              "negative_count": 274,
+              "recall": null,
+              "fpr": 0.781021897810219,
+              "alert_rate": 0.781021897810219
+            },
+            "merchants_without_akwe": {
+              "n": 327,
+              "positive_count": 0,
+              "negative_count": 327,
+              "recall": null,
+              "fpr": 0.5412844036697247,
+              "alert_rate": 0.5412844036697247
+            },
+            "imitators": {
+              "n": 319,
+              "positive_count": 319,
+              "negative_count": 0,
+              "recall": 0.8213166144200627,
+              "fpr": null,
+              "alert_rate": 0.8213166144200627
+            }
+          }
+        },
+        "sage_history": {
+          "threshold": 0.28519967198371887,
+          "validation": {
+            "n": 3545,
+            "fraud_count": 531,
+            "alerts": 677,
+            "true_positives": 425,
+            "false_positives": 252,
+            "recall": 0.800376647834275,
+            "precision": 0.6277695716395865,
+            "average_precision": 0.7621570365519706,
+            "threshold": 0.28519967198371887,
+            "merchant_count": 1430,
+            "merchant_false_positives": 224,
+            "merchant_fpr": 0.15664335664335666,
+            "imitator_count": 333,
+            "imitator_recall": 0.8048048048048048
+          },
+          "test": {
+            "n": 3547,
+            "fraud_count": 520,
+            "alerts": 471,
+            "true_positives": 287,
+            "false_positives": 184,
+            "recall": 0.551923076923077,
+            "precision": 0.6093418259023354,
+            "average_precision": 0.6416742722808054,
+            "threshold": 0.28519967198371887,
+            "merchant_count": 1494,
+            "merchant_false_positives": 166,
+            "merchant_fpr": 0.1111111111111111,
+            "imitator_count": 319,
+            "imitator_recall": 0.5454545454545454
+          },
+          "blackout_test": {
+            "n": 3547,
+            "fraud_count": 520,
+            "alerts": 471,
+            "true_positives": 287,
+            "false_positives": 184,
+            "recall": 0.551923076923077,
+            "precision": 0.6093418259023354,
+            "average_precision": 0.6416742722808054,
+            "threshold": 0.28519967198371887,
+            "merchant_count": 1494,
+            "merchant_false_positives": 166,
+            "merchant_fpr": 0.1111111111111111,
+            "imitator_count": 319,
+            "imitator_recall": 0.5454545454545454
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 444,
+              "positive_count": 58,
+              "negative_count": 386,
+              "recall": 0.7241379310344828,
+              "fpr": 0.24352331606217617,
+              "alert_rate": 0.3063063063063063
+            },
+            "new_merchants": {
+              "n": 274,
+              "positive_count": 0,
+              "negative_count": 274,
+              "recall": null,
+              "fpr": 0.3029197080291971,
+              "alert_rate": 0.3029197080291971
+            },
+            "merchants_without_akwe": {
+              "n": 327,
+              "positive_count": 0,
+              "negative_count": 327,
+              "recall": null,
+              "fpr": 0.18654434250764526,
+              "alert_rate": 0.18654434250764526
+            },
+            "imitators": {
+              "n": 319,
+              "positive_count": 319,
+              "negative_count": 0,
+              "recall": 0.5454545454545454,
+              "fpr": null,
+              "alert_rate": 0.5454545454545454
+            }
+          }
+        },
+        "sage_akwe": {
+          "threshold": 0.08462748676538467,
+          "validation": {
+            "n": 3545,
+            "fraud_count": 531,
+            "alerts": 835,
+            "true_positives": 425,
+            "false_positives": 410,
+            "recall": 0.800376647834275,
+            "precision": 0.5089820359281437,
+            "average_precision": 0.7182540591386188,
+            "threshold": 0.08462748676538467,
+            "merchant_count": 1430,
+            "merchant_false_positives": 359,
+            "merchant_fpr": 0.25104895104895103,
+            "imitator_count": 333,
+            "imitator_recall": 0.7837837837837838
+          },
+          "test": {
+            "n": 3547,
+            "fraud_count": 520,
+            "alerts": 962,
+            "true_positives": 351,
+            "false_positives": 611,
+            "recall": 0.675,
+            "precision": 0.36486486486486486,
+            "average_precision": 0.6010044392651039,
+            "threshold": 0.08462748676538467,
+            "merchant_count": 1494,
+            "merchant_false_positives": 547,
+            "merchant_fpr": 0.36613119143239625,
+            "imitator_count": 319,
+            "imitator_recall": 0.6489028213166145
+          },
+          "blackout_test": {
+            "n": 3547,
+            "fraud_count": 520,
+            "alerts": 817,
+            "true_positives": 340,
+            "false_positives": 477,
+            "recall": 0.6538461538461539,
+            "precision": 0.41615667074663404,
+            "average_precision": 0.5953458685939108,
+            "threshold": 0.08462748676538467,
+            "merchant_count": 1494,
+            "merchant_false_positives": 431,
+            "merchant_fpr": 0.28848728246318606,
+            "imitator_count": 319,
+            "imitator_recall": 0.6081504702194357
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 444,
+              "positive_count": 58,
+              "negative_count": 386,
+              "recall": 1.0,
+              "fpr": 0.6968911917098446,
+              "alert_rate": 0.7364864864864865
+            },
+            "new_merchants": {
+              "n": 274,
+              "positive_count": 0,
+              "negative_count": 274,
+              "recall": null,
+              "fpr": 0.8759124087591241,
+              "alert_rate": 0.8759124087591241
+            },
+            "merchants_without_akwe": {
+              "n": 327,
+              "positive_count": 0,
+              "negative_count": 327,
+              "recall": null,
+              "fpr": 0.5749235474006116,
+              "alert_rate": 0.5749235474006116
+            },
+            "imitators": {
+              "n": 319,
+              "positive_count": 319,
+              "negative_count": 0,
+              "recall": 0.6489028213166145,
+              "fpr": null,
+              "alert_rate": 0.6489028213166145
+            }
+          }
+        }
+      },
+      "training": {
+        "logistic_history": {
+          "seconds": 0.1901091999898199,
+          "device": "cpu",
+          "parameters": 10
+        },
+        "logistic_akwe": {
+          "seconds": 0.21800369999255054,
+          "device": "cpu",
+          "parameters": 13
+        },
+        "mlp_history": {
+          "seconds": 2.4753874999878462,
+          "epochs": 20,
+          "loss_by_epoch": [
+            0.6214641564422183,
+            0.5288451347086165,
+            0.5099275782704353,
+            0.5024283337924216,
+            0.4967622607946396,
+            0.49395627197292113,
+            0.4915123764011595,
+            0.49180298464165795,
+            0.4864007954796155,
+            0.48201580262846416,
+            0.4799485405286153,
+            0.4821450354324447,
+            0.48379286461406285,
+            0.47433527807394665,
+            0.46801255726151997,
+            0.4592194590303633,
+            0.4563055915964974,
+            0.4584681921535068,
+            0.4445725820130772,
+            0.4424033189813296
+          ],
+          "parameters": 3841,
+          "device": "cpu",
+          "peak_vram_bytes": null
+        },
+        "mlp_akwe": {
+          "seconds": 2.4128124000271782,
+          "epochs": 20,
+          "loss_by_epoch": [
+            0.5998885176248021,
+            0.502697206205792,
+            0.4744715922408634,
+            0.4619775224063132,
+            0.4508776027295325,
+            0.4462730967336231,
+            0.4385257727570004,
+            0.4387093260884285,
+            0.4345169696542952,
+            0.4210455194115639,
+            0.4200431961152289,
+            0.4304596922463841,
+            0.4214459972249137,
+            0.4117753348416752,
+            0.39311619930797154,
+            0.3963644537660811,
+            0.3967489053805669,
+            0.39116931789451176,
+            0.3923491562406222,
+            0.38427019864320755
+          ],
+          "parameters": 3985,
+          "device": "cpu",
+          "peak_vram_bytes": null
+        },
+        "sage_history": {
+          "seconds": 3.266326000011759,
+          "epochs": 20,
+          "loss_by_epoch": [
+            0.6021583129962286,
+            0.5086366881926855,
+            0.4736090939905908,
+            0.43505023750993943,
+            0.42341409044133294,
+            0.3991508094800843,
+            0.38974938665827114,
+            0.40540873010953266,
+            0.3726616216202577,
+            0.3403520691725943,
+            0.3250473489363988,
+            0.3534100552399953,
+            0.3522585692505042,
+            0.31384902199109393,
+            0.2914835943116082,
+            0.2961566473046939,
+            0.28583974287741715,
+            0.3091682909677426,
+            0.26606346749597126,
+            0.3030632421788242
+          ],
+          "parameters": 3841,
+          "device": "cpu",
+          "peak_vram_bytes": null
+        },
+        "sage_akwe": {
+          "seconds": 3.390866100002313,
+          "epochs": 20,
+          "loss_by_epoch": [
+            0.5862448339660963,
+            0.5013392368952433,
+            0.46651913970708847,
+            0.44107380509376526,
+            0.42997613549232483,
+            0.410205642796225,
+            0.37817170636521447,
+            0.3789064424733321,
+            0.34577006432745194,
+            0.34284288270605934,
+            0.32487042413817513,
+            0.3451406906048457,
+            0.33249195251199937,
+            0.3129544266396099,
+            0.2783292647865083,
+            0.2657224651839998,
+            0.2678750405708949,
+            0.2663694628410869,
+            0.2773157043589486,
+            0.3122546863224771
+          ],
+          "parameters": 3985,
+          "device": "cpu",
+          "peak_vram_bytes": null
+        }
+      },
+      "uncertainty": {
+        "unit": "receiver_account",
+        "groups": 537,
+        "repeats": 400,
+        "models": {
+          "rules": {
+            "recall": {
+              "low": 0.7049321840222575,
+              "high": 0.926560972629521,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.13071408419482902,
+              "high": 0.3023482543097928,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.4689937198773185,
+              "high": 0.7490433277962347,
+              "valid_repeats": 400
+            }
+          },
+          "logistic_history": {
+            "recall": {
+              "low": 0.6637302316365863,
+              "high": 0.8831436580049389,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.13812906489696372,
+              "high": 0.3767392364534631,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.6972988747703612,
+              "high": 0.8487701038844291,
+              "valid_repeats": 400
+            }
+          },
+          "logistic_akwe": {
+            "recall": {
+              "low": 0.6372071342148474,
+              "high": 0.8725846374575004,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.13946604424669667,
+              "high": 0.3648304122726221,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.701407621596648,
+              "high": 0.8524822130190082,
+              "valid_repeats": 400
+            }
+          },
+          "mlp_history": {
+            "recall": {
+              "low": 0.6773870724426803,
+              "high": 0.8768668020507356,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.18863978588269745,
+              "high": 0.4288469622791882,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.47374233689092177,
+              "high": 0.6642519261611687,
+              "valid_repeats": 400
+            }
+          },
+          "mlp_akwe": {
+            "recall": {
+              "low": 0.5957615070197263,
+              "high": 0.8727674237260126,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.14803658453753546,
+              "high": 0.3651794978352156,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.5820734712122368,
+              "high": 0.7925288711916124,
+              "valid_repeats": 400
+            }
+          },
+          "sage_history": {
+            "recall": {
+              "low": 0.3790369074132994,
+              "high": 0.6983976982390648,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.41249594155844155,
+              "high": 0.7750967630332778,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.07029943098784242,
+              "high": 0.16051883983112927,
+              "valid_repeats": 400
+            }
+          },
+          "sage_akwe": {
+            "recall": {
+              "low": 0.5442802733281058,
+              "high": 0.8014362862369828,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.22199924751294614,
+              "high": 0.5299395718033071,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.2635360985677161,
+              "high": 0.4869054453536695,
+              "valid_repeats": 400
+            }
+          }
+        },
+        "paired_context_deltas": {
+          "logistic": {
+            "recall": {
+              "low": -0.11840401520551197,
+              "high": 0.0703341295450418,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": -0.04675652050999123,
+              "high": 0.04360179526914404,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": -0.03183760293056052,
+              "high": 0.018100487812069247,
+              "valid_repeats": 400
+            }
+          },
+          "mlp": {
+            "recall": {
+              "low": -0.20463703632054944,
+              "high": 0.1297214120486772,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.007632975910544324,
+              "high": 0.25954206406360697,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": -0.10854645762921275,
+              "high": 0.0016242443254893782,
+              "valid_repeats": 400
+            }
+          },
+          "sage": {
+            "recall": {
+              "low": 0.0336590592315374,
+              "high": 0.21741008545403329,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.17016259192724414,
+              "high": 0.3594730054350964,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": -0.32336787739620154,
+              "high": -0.13478717178609032,
+              "valid_repeats": 400
+            }
+          }
+        }
+      },
+      "total_seconds": 19.57432929999777
+    },
+    {
+      "seed": 73103,
+      "size": 18000,
+      "dataset_sha256": "9c1ad1e4a873acf0302051721bd58df0a8ce97c61dd45bf4c79303ad30d629eb",
+      "counts": {
+        "train": 10768,
+        "validation": 3575,
+        "test": 3657
+      },
+      "models": {
+        "rules": {
+          "threshold": 0.5284648556810002,
+          "validation": {
+            "n": 3575,
+            "fraud_count": 471,
+            "alerts": 2459,
+            "true_positives": 377,
+            "false_positives": 2082,
+            "recall": 0.8004246284501062,
+            "precision": 0.15331435542903618,
+            "average_precision": 0.1326803140551946,
+            "threshold": 0.5284648556810002,
+            "merchant_count": 1525,
+            "merchant_false_positives": 1042,
+            "merchant_fpr": 0.6832786885245902,
+            "imitator_count": 267,
+            "imitator_recall": 0.8164794007490637
+          },
+          "test": {
+            "n": 3657,
+            "fraud_count": 467,
+            "alerts": 2438,
+            "true_positives": 397,
+            "false_positives": 2041,
+            "recall": 0.8501070663811563,
+            "precision": 0.16283839212469237,
+            "average_precision": 0.14674064075915572,
+            "threshold": 0.5284648556810002,
+            "merchant_count": 1505,
+            "merchant_false_positives": 1030,
+            "merchant_fpr": 0.6843853820598007,
+            "imitator_count": 245,
+            "imitator_recall": 0.8816326530612245
+          },
+          "blackout_test": {
+            "n": 3657,
+            "fraud_count": 467,
+            "alerts": 2438,
+            "true_positives": 397,
+            "false_positives": 2041,
+            "recall": 0.8501070663811563,
+            "precision": 0.16283839212469237,
+            "average_precision": 0.14674064075915572,
+            "threshold": 0.5284648556810002,
+            "merchant_count": 1505,
+            "merchant_false_positives": 1030,
+            "merchant_fpr": 0.6843853820598007,
+            "imitator_count": 245,
+            "imitator_recall": 0.8816326530612245
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 362,
+              "positive_count": 59,
+              "negative_count": 303,
+              "recall": 0.711864406779661,
+              "fpr": 0.5016501650165016,
+              "alert_rate": 0.5359116022099447
+            },
+            "new_merchants": {
+              "n": 207,
+              "positive_count": 0,
+              "negative_count": 207,
+              "recall": null,
+              "fpr": 0.6763285024154589,
+              "alert_rate": 0.6763285024154589
+            },
+            "merchants_without_akwe": {
+              "n": 254,
+              "positive_count": 0,
+              "negative_count": 254,
+              "recall": null,
+              "fpr": 0.5905511811023622,
+              "alert_rate": 0.5905511811023622
+            },
+            "imitators": {
+              "n": 245,
+              "positive_count": 245,
+              "negative_count": 0,
+              "recall": 0.8816326530612245,
+              "fpr": null,
+              "alert_rate": 0.8816326530612245
+            }
+          }
+        },
+        "logistic_history": {
+          "threshold": 0.5217149438268699,
+          "validation": {
+            "n": 3575,
+            "fraud_count": 471,
+            "alerts": 2032,
+            "true_positives": 377,
+            "false_positives": 1655,
+            "recall": 0.8004246284501062,
+            "precision": 0.18553149606299213,
+            "average_precision": 0.1559577605164619,
+            "threshold": 0.5217149438268699,
+            "merchant_count": 1525,
+            "merchant_false_positives": 1397,
+            "merchant_fpr": 0.9160655737704918,
+            "imitator_count": 267,
+            "imitator_recall": 0.797752808988764
+          },
+          "test": {
+            "n": 3657,
+            "fraud_count": 467,
+            "alerts": 1959,
+            "true_positives": 351,
+            "false_positives": 1608,
+            "recall": 0.7516059957173448,
+            "precision": 0.17917304747320062,
+            "average_precision": 0.16981454876773297,
+            "threshold": 0.5217149438268699,
+            "merchant_count": 1505,
+            "merchant_false_positives": 1288,
+            "merchant_fpr": 0.8558139534883721,
+            "imitator_count": 245,
+            "imitator_recall": 0.7918367346938775
+          },
+          "blackout_test": {
+            "n": 3657,
+            "fraud_count": 467,
+            "alerts": 1959,
+            "true_positives": 351,
+            "false_positives": 1608,
+            "recall": 0.7516059957173448,
+            "precision": 0.17917304747320062,
+            "average_precision": 0.16981454876773297,
+            "threshold": 0.5217149438268699,
+            "merchant_count": 1505,
+            "merchant_false_positives": 1288,
+            "merchant_fpr": 0.8558139534883721,
+            "imitator_count": 245,
+            "imitator_recall": 0.7918367346938775
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 362,
+              "positive_count": 59,
+              "negative_count": 303,
+              "recall": 0.288135593220339,
+              "fpr": 0.31683168316831684,
+              "alert_rate": 0.31215469613259667
+            },
+            "new_merchants": {
+              "n": 207,
+              "positive_count": 0,
+              "negative_count": 207,
+              "recall": null,
+              "fpr": 0.4396135265700483,
+              "alert_rate": 0.4396135265700483
+            },
+            "merchants_without_akwe": {
+              "n": 254,
+              "positive_count": 0,
+              "negative_count": 254,
+              "recall": null,
+              "fpr": 0.9291338582677166,
+              "alert_rate": 0.9291338582677166
+            },
+            "imitators": {
+              "n": 245,
+              "positive_count": 245,
+              "negative_count": 0,
+              "recall": 0.7918367346938775,
+              "fpr": null,
+              "alert_rate": 0.7918367346938775
+            }
+          }
+        },
+        "logistic_akwe": {
+          "threshold": 0.5235064171905995,
+          "validation": {
+            "n": 3575,
+            "fraud_count": 471,
+            "alerts": 1898,
+            "true_positives": 377,
+            "false_positives": 1521,
+            "recall": 0.8004246284501062,
+            "precision": 0.19863013698630136,
+            "average_precision": 0.2215922060117591,
+            "threshold": 0.5235064171905995,
+            "merchant_count": 1525,
+            "merchant_false_positives": 1286,
+            "merchant_fpr": 0.8432786885245902,
+            "imitator_count": 267,
+            "imitator_recall": 0.846441947565543
+          },
+          "test": {
+            "n": 3657,
+            "fraud_count": 467,
+            "alerts": 1842,
+            "true_positives": 358,
+            "false_positives": 1484,
+            "recall": 0.7665952890792291,
+            "precision": 0.19435396308360478,
+            "average_precision": 0.2258366873502398,
+            "threshold": 0.5235064171905995,
+            "merchant_count": 1505,
+            "merchant_false_positives": 1236,
+            "merchant_fpr": 0.8212624584717608,
+            "imitator_count": 245,
+            "imitator_recall": 0.8204081632653061
+          },
+          "blackout_test": {
+            "n": 3657,
+            "fraud_count": 467,
+            "alerts": 958,
+            "true_positives": 142,
+            "false_positives": 816,
+            "recall": 0.30406852248394006,
+            "precision": 0.14822546972860126,
+            "average_precision": 0.16182536658700486,
+            "threshold": 0.5235064171905995,
+            "merchant_count": 1505,
+            "merchant_false_positives": 690,
+            "merchant_fpr": 0.4584717607973422,
+            "imitator_count": 245,
+            "imitator_recall": 0.3510204081632653
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 362,
+              "positive_count": 59,
+              "negative_count": 303,
+              "recall": 0.4576271186440678,
+              "fpr": 0.40594059405940597,
+              "alert_rate": 0.4143646408839779
+            },
+            "new_merchants": {
+              "n": 207,
+              "positive_count": 0,
+              "negative_count": 207,
+              "recall": null,
+              "fpr": 0.5555555555555556,
+              "alert_rate": 0.5555555555555556
+            },
+            "merchants_without_akwe": {
+              "n": 254,
+              "positive_count": 0,
+              "negative_count": 254,
+              "recall": null,
+              "fpr": 0.5826771653543307,
+              "alert_rate": 0.5826771653543307
+            },
+            "imitators": {
+              "n": 245,
+              "positive_count": 245,
+              "negative_count": 0,
+              "recall": 0.8204081632653061,
+              "fpr": null,
+              "alert_rate": 0.8204081632653061
+            }
+          }
+        },
+        "mlp_history": {
+          "threshold": 0.5190566182136536,
+          "validation": {
+            "n": 3575,
+            "fraud_count": 471,
+            "alerts": 1286,
+            "true_positives": 377,
+            "false_positives": 909,
+            "recall": 0.8004246284501062,
+            "precision": 0.2931570762052877,
+            "average_precision": 0.42374378460671974,
+            "threshold": 0.5190566182136536,
+            "merchant_count": 1525,
+            "merchant_false_positives": 791,
+            "merchant_fpr": 0.5186885245901639,
+            "imitator_count": 267,
+            "imitator_recall": 0.7378277153558053
+          },
+          "test": {
+            "n": 3657,
+            "fraud_count": 467,
+            "alerts": 1295,
+            "true_positives": 329,
+            "false_positives": 966,
+            "recall": 0.7044967880085653,
+            "precision": 0.25405405405405407,
+            "average_precision": 0.38341682870454286,
+            "threshold": 0.5190566182136536,
+            "merchant_count": 1505,
+            "merchant_false_positives": 794,
+            "merchant_fpr": 0.5275747508305648,
+            "imitator_count": 245,
+            "imitator_recall": 0.7510204081632653
+          },
+          "blackout_test": {
+            "n": 3657,
+            "fraud_count": 467,
+            "alerts": 1295,
+            "true_positives": 329,
+            "false_positives": 966,
+            "recall": 0.7044967880085653,
+            "precision": 0.25405405405405407,
+            "average_precision": 0.38341682870454286,
+            "threshold": 0.5190566182136536,
+            "merchant_count": 1505,
+            "merchant_false_positives": 794,
+            "merchant_fpr": 0.5275747508305648,
+            "imitator_count": 245,
+            "imitator_recall": 0.7510204081632653
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 362,
+              "positive_count": 59,
+              "negative_count": 303,
+              "recall": 0.576271186440678,
+              "fpr": 0.32673267326732675,
+              "alert_rate": 0.3674033149171271
+            },
+            "new_merchants": {
+              "n": 207,
+              "positive_count": 0,
+              "negative_count": 207,
+              "recall": null,
+              "fpr": 0.41545893719806765,
+              "alert_rate": 0.41545893719806765
+            },
+            "merchants_without_akwe": {
+              "n": 254,
+              "positive_count": 0,
+              "negative_count": 254,
+              "recall": null,
+              "fpr": 0.7204724409448819,
+              "alert_rate": 0.7204724409448819
+            },
+            "imitators": {
+              "n": 245,
+              "positive_count": 245,
+              "negative_count": 0,
+              "recall": 0.7510204081632653,
+              "fpr": null,
+              "alert_rate": 0.7510204081632653
+            }
+          }
+        },
+        "mlp_akwe": {
+          "threshold": 0.5843263864517212,
+          "validation": {
+            "n": 3575,
+            "fraud_count": 471,
+            "alerts": 975,
+            "true_positives": 377,
+            "false_positives": 598,
+            "recall": 0.8004246284501062,
+            "precision": 0.38666666666666666,
+            "average_precision": 0.5079988608470317,
+            "threshold": 0.5843263864517212,
+            "merchant_count": 1525,
+            "merchant_false_positives": 514,
+            "merchant_fpr": 0.33704918032786885,
+            "imitator_count": 267,
+            "imitator_recall": 0.797752808988764
+          },
+          "test": {
+            "n": 3657,
+            "fraud_count": 467,
+            "alerts": 1033,
+            "true_positives": 287,
+            "false_positives": 746,
+            "recall": 0.6145610278372591,
+            "precision": 0.27783155856727976,
+            "average_precision": 0.32731613650553226,
+            "threshold": 0.5843263864517212,
+            "merchant_count": 1505,
+            "merchant_false_positives": 663,
+            "merchant_fpr": 0.440531561461794,
+            "imitator_count": 245,
+            "imitator_recall": 0.7551020408163265
+          },
+          "blackout_test": {
+            "n": 3657,
+            "fraud_count": 467,
+            "alerts": 751,
+            "true_positives": 219,
+            "false_positives": 532,
+            "recall": 0.4689507494646681,
+            "precision": 0.29161118508655126,
+            "average_precision": 0.29281622325427303,
+            "threshold": 0.5843263864517212,
+            "merchant_count": 1505,
+            "merchant_false_positives": 447,
+            "merchant_fpr": 0.29700996677740865,
+            "imitator_count": 245,
+            "imitator_recall": 0.6653061224489796
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 362,
+              "positive_count": 59,
+              "negative_count": 303,
+              "recall": 0.4915254237288136,
+              "fpr": 0.35973597359735976,
+              "alert_rate": 0.3812154696132597
+            },
+            "new_merchants": {
+              "n": 207,
+              "positive_count": 0,
+              "negative_count": 207,
+              "recall": null,
+              "fpr": 0.45410628019323673,
+              "alert_rate": 0.45410628019323673
+            },
+            "merchants_without_akwe": {
+              "n": 254,
+              "positive_count": 0,
+              "negative_count": 254,
+              "recall": null,
+              "fpr": 0.5078740157480315,
+              "alert_rate": 0.5078740157480315
+            },
+            "imitators": {
+              "n": 245,
+              "positive_count": 245,
+              "negative_count": 0,
+              "recall": 0.7551020408163265,
+              "fpr": null,
+              "alert_rate": 0.7551020408163265
+            }
+          }
+        },
+        "sage_history": {
+          "threshold": 0.2560499906539917,
+          "validation": {
+            "n": 3575,
+            "fraud_count": 471,
+            "alerts": 688,
+            "true_positives": 377,
+            "false_positives": 311,
+            "recall": 0.8004246284501062,
+            "precision": 0.5479651162790697,
+            "average_precision": 0.771428133828501,
+            "threshold": 0.2560499906539917,
+            "merchant_count": 1525,
+            "merchant_false_positives": 296,
+            "merchant_fpr": 0.1940983606557377,
+            "imitator_count": 267,
+            "imitator_recall": 0.6779026217228464
+          },
+          "test": {
+            "n": 3657,
+            "fraud_count": 467,
+            "alerts": 764,
+            "true_positives": 366,
+            "false_positives": 398,
+            "recall": 0.7837259100642399,
+            "precision": 0.4790575916230366,
+            "average_precision": 0.6625076732770002,
+            "threshold": 0.2560499906539917,
+            "merchant_count": 1505,
+            "merchant_false_positives": 371,
+            "merchant_fpr": 0.24651162790697675,
+            "imitator_count": 245,
+            "imitator_recall": 0.8204081632653061
+          },
+          "blackout_test": {
+            "n": 3657,
+            "fraud_count": 467,
+            "alerts": 764,
+            "true_positives": 366,
+            "false_positives": 398,
+            "recall": 0.7837259100642399,
+            "precision": 0.4790575916230366,
+            "average_precision": 0.6625076732770002,
+            "threshold": 0.2560499906539917,
+            "merchant_count": 1505,
+            "merchant_false_positives": 371,
+            "merchant_fpr": 0.24651162790697675,
+            "imitator_count": 245,
+            "imitator_recall": 0.8204081632653061
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 362,
+              "positive_count": 59,
+              "negative_count": 303,
+              "recall": 0.864406779661017,
+              "fpr": 0.49834983498349833,
+              "alert_rate": 0.5580110497237569
+            },
+            "new_merchants": {
+              "n": 207,
+              "positive_count": 0,
+              "negative_count": 207,
+              "recall": null,
+              "fpr": 0.642512077294686,
+              "alert_rate": 0.642512077294686
+            },
+            "merchants_without_akwe": {
+              "n": 254,
+              "positive_count": 0,
+              "negative_count": 254,
+              "recall": null,
+              "fpr": 0.20078740157480315,
+              "alert_rate": 0.20078740157480315
+            },
+            "imitators": {
+              "n": 245,
+              "positive_count": 245,
+              "negative_count": 0,
+              "recall": 0.8204081632653061,
+              "fpr": null,
+              "alert_rate": 0.8204081632653061
+            }
+          }
+        },
+        "sage_akwe": {
+          "threshold": 0.23673918843269348,
+          "validation": {
+            "n": 3575,
+            "fraud_count": 471,
+            "alerts": 694,
+            "true_positives": 377,
+            "false_positives": 317,
+            "recall": 0.8004246284501062,
+            "precision": 0.5432276657060519,
+            "average_precision": 0.7521682641734232,
+            "threshold": 0.23673918843269348,
+            "merchant_count": 1525,
+            "merchant_false_positives": 294,
+            "merchant_fpr": 0.19278688524590165,
+            "imitator_count": 267,
+            "imitator_recall": 0.6928838951310862
+          },
+          "test": {
+            "n": 3657,
+            "fraud_count": 467,
+            "alerts": 831,
+            "true_positives": 365,
+            "false_positives": 466,
+            "recall": 0.7815845824411135,
+            "precision": 0.43922984356197353,
+            "average_precision": 0.5990088451665583,
+            "threshold": 0.23673918843269348,
+            "merchant_count": 1505,
+            "merchant_false_positives": 420,
+            "merchant_fpr": 0.27906976744186046,
+            "imitator_count": 245,
+            "imitator_recall": 0.8326530612244898
+          },
+          "blackout_test": {
+            "n": 3657,
+            "fraud_count": 467,
+            "alerts": 323,
+            "true_positives": 166,
+            "false_positives": 157,
+            "recall": 0.3554603854389722,
+            "precision": 0.5139318885448917,
+            "average_precision": 0.44611141041370506,
+            "threshold": 0.23673918843269348,
+            "merchant_count": 1505,
+            "merchant_false_positives": 139,
+            "merchant_fpr": 0.09235880398671097,
+            "imitator_count": 245,
+            "imitator_recall": 0.3673469387755102
+          },
+          "populations": {
+            "new_to_training": {
+              "n": 362,
+              "positive_count": 59,
+              "negative_count": 303,
+              "recall": 1.0,
+              "fpr": 0.6732673267326733,
+              "alert_rate": 0.7265193370165746
+            },
+            "new_merchants": {
+              "n": 207,
+              "positive_count": 0,
+              "negative_count": 207,
+              "recall": null,
+              "fpr": 0.8985507246376812,
+              "alert_rate": 0.8985507246376812
+            },
+            "merchants_without_akwe": {
+              "n": 254,
+              "positive_count": 0,
+              "negative_count": 254,
+              "recall": null,
+              "fpr": 0.1062992125984252,
+              "alert_rate": 0.1062992125984252
+            },
+            "imitators": {
+              "n": 245,
+              "positive_count": 245,
+              "negative_count": 0,
+              "recall": 0.8326530612244898,
+              "fpr": null,
+              "alert_rate": 0.8326530612244898
+            }
+          }
+        }
+      },
+      "training": {
+        "logistic_history": {
+          "seconds": 0.17420259999926202,
+          "device": "cpu",
+          "parameters": 10
+        },
+        "logistic_akwe": {
+          "seconds": 0.2676629000052344,
+          "device": "cpu",
+          "parameters": 13
+        },
+        "mlp_history": {
+          "seconds": 2.2272725999937393,
+          "epochs": 20,
+          "loss_by_epoch": [
+            0.6295760149757067,
+            0.5468441612190671,
+            0.5143972262740135,
+            0.5028050508764055,
+            0.49178508834706414,
+            0.48500555174218285,
+            0.483231745660305,
+            0.47501567420032287,
+            0.47062697178787655,
+            0.4657264020707872,
+            0.4600451249215338,
+            0.4602176182799869,
+            0.4455948546528816,
+            0.44634905457496643,
+            0.4740789102183448,
+            0.4850848706232177,
+            0.46522034373548293,
+            0.45281726039118236,
+            0.453928690817621,
+            0.4571136029230224
+          ],
+          "parameters": 3841,
+          "device": "cpu",
+          "peak_vram_bytes": null
+        },
+        "mlp_akwe": {
+          "seconds": 2.0223211999982595,
+          "epochs": 20,
+          "loss_by_epoch": [
+            0.6128996577527788,
+            0.5270745067132844,
+            0.5082939283715354,
+            0.4951569876737065,
+            0.478320664829678,
+            0.4616815514034695,
+            0.45096229016780853,
+            0.44779255323939854,
+            0.42447685036394334,
+            0.45890078362491393,
+            0.4355032162533866,
+            0.42256177382336724,
+            0.4223868259125286,
+            0.4223313074972894,
+            0.4046178526348538,
+            0.3841371246510082,
+            0.37196410281790626,
+            0.3564559821453359,
+            0.35720765466491383,
+            0.3397395900554127
+          ],
+          "parameters": 3985,
+          "device": "cpu",
+          "peak_vram_bytes": null
+        },
+        "sage_history": {
+          "seconds": 3.1817268999875523,
+          "epochs": 20,
+          "loss_by_epoch": [
+            0.6052775043580267,
+            0.5147144728236728,
+            0.4875883062680562,
+            0.466104624999894,
+            0.432999608417352,
+            0.41385049869616825,
+            0.43434103164407944,
+            0.39722057845857406,
+            0.3584514715605312,
+            0.3505806558661991,
+            0.32394054904580116,
+            0.321674601899253,
+            0.2991570358475049,
+            0.3026328624950515,
+            0.33893705904483795,
+            0.30114656024509007,
+            0.2991730247934659,
+            0.2725755920012792,
+            0.2640613466501236,
+            0.26949937600228524
+          ],
+          "parameters": 3841,
+          "device": "cpu",
+          "peak_vram_bytes": null
+        },
+        "sage_akwe": {
+          "seconds": 3.5118180999998003,
+          "epochs": 20,
+          "loss_by_epoch": [
+            0.6045722514390945,
+            0.5141593731111951,
+            0.4945698214901818,
+            0.4731340847081608,
+            0.4378185073534648,
+            0.41581085241503185,
+            0.39127728674146867,
+            0.3634159548415078,
+            0.3478907495737076,
+            0.3053880147635937,
+            0.2937654008467992,
+            0.2874053108195464,
+            0.2572784382436011,
+            0.2526581999328401,
+            0.28384896326396203,
+            0.2366205064786805,
+            0.25229398864838815,
+            0.23067306892739403,
+            0.21813969810803732,
+            0.2021432225075033
+          ],
+          "parameters": 3985,
+          "device": "cpu",
+          "peak_vram_bytes": null
+        }
+      },
+      "uncertainty": {
+        "unit": "receiver_account",
+        "groups": 548,
+        "repeats": 400,
+        "models": {
+          "rules": {
+            "recall": {
+              "low": 0.7348871318203766,
+              "high": 0.9736279990682506,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.09113268829491256,
+              "high": 0.24008762356365093,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.5720031191129524,
+              "high": 0.8394058209985428,
+              "valid_repeats": 400
+            }
+          },
+          "logistic_history": {
+            "recall": {
+              "low": 0.6092043269230769,
+              "high": 0.8512573358282237,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.09754934014980383,
+              "high": 0.283196434555296,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.7955384499974995,
+              "high": 0.8975823001557812,
+              "valid_repeats": 400
+            }
+          },
+          "logistic_akwe": {
+            "recall": {
+              "low": 0.6273046564919795,
+              "high": 0.9067358490566036,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.1103872908914144,
+              "high": 0.297594420826803,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.7410691725199455,
+              "high": 0.8849957201819801,
+              "valid_repeats": 400
+            }
+          },
+          "mlp_history": {
+            "recall": {
+              "low": 0.5278235375496174,
+              "high": 0.8931654722957886,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.14731769412620477,
+              "high": 0.37810248238345895,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.4180068017342879,
+              "high": 0.6423868638452119,
+              "valid_repeats": 400
+            }
+          },
+          "mlp_akwe": {
+            "recall": {
+              "low": 0.3959743301187369,
+              "high": 0.8467231612746878,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.15017551958090003,
+              "high": 0.42518950635292696,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.33394985252266585,
+              "high": 0.5671122914752309,
+              "valid_repeats": 400
+            }
+          },
+          "sage_history": {
+            "recall": {
+              "low": 0.6678493855484248,
+              "high": 0.8953900358918633,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.3031554712892741,
+              "high": 0.6370717527634757,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.1651021841749729,
+              "high": 0.34211213053510603,
+              "valid_repeats": 400
+            }
+          },
+          "sage_akwe": {
+            "recall": {
+              "low": 0.6540862630851274,
+              "high": 0.9273865001786118,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": 0.27880709179989144,
+              "high": 0.5987943878045068,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": 0.18257417483702068,
+              "high": 0.40651698661245644,
+              "valid_repeats": 400
+            }
+          }
+        },
+        "paired_context_deltas": {
+          "logistic": {
+            "recall": {
+              "low": -0.1329932815919037,
+              "high": 0.1989978183801471,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": -0.08767148104030184,
+              "high": 0.012975556567585124,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": -0.014319427384309153,
+              "high": 0.04799342575401008,
+              "valid_repeats": 400
+            }
+          },
+          "mlp": {
+            "recall": {
+              "low": -0.1668436293436294,
+              "high": -0.008490180032733257,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": -0.21894974879388393,
+              "high": 0.06979309683038809,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": -0.042559581631299054,
+              "high": 0.07888888716338215,
+              "valid_repeats": 400
+            }
+          },
+          "sage": {
+            "recall": {
+              "low": -0.0989596859699074,
+              "high": 0.10871718806184827,
+              "valid_repeats": 400
+            },
+            "merchant_fpr": {
+              "low": -0.013208646636144626,
+              "high": 0.09742215292957866,
+              "valid_repeats": 400
+            },
+            "precision": {
+              "low": -0.09810871088212791,
+              "high": 0.015134293903472946,
+              "valid_repeats": 400
+            }
+          }
+        }
+      },
+      "total_seconds": 19.116534300002968
+    }
+  ]
+}

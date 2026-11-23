@@ -1,0 +1,4 @@
+# Extension optionnelle ; installer séparément du socle Streamlit.
+# CPU local : pip install -r requirements-graph.txt --index-url https://download.pytorch.org/whl/cpu
+# Pour CUDA, choisir le build compatible avec le GPU via l'installateur officiel PyTorch.
+torch==2.15.0

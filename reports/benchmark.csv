@@ -1,0 +1,4 @@
+seed,device,requests,warmup,p50_ms,p95_ms,includes
+2026,CPU,200,20,0.08129999332595617,0.17301497864536938,"caractéristiques locales 7 jours + score, historique déjà chargé ; hors UI et réseau"
+2027,CPU,200,20,0.21294999169185758,0.4279299973859451,"caractéristiques locales 7 jours + score, historique déjà chargé ; hors UI et réseau"
+2028,CPU,200,20,0.08620000153314322,0.27770501619670535,"caractéristiques locales 7 jours + score, historique déjà chargé ; hors UI et réseau"
