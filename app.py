@@ -206,14 +206,19 @@ def graph_lab():
                    "Un faible indice ne constitue pas une preuve de légitimité.")
 
 
+def daily_flows(dataset):
+    buckets = {}
+    for tx in dataset.transactions:
+        day = tx.timestamp // 86400
+        bucket = buckets.setdefault(day, {"day": day + 1, "volume": 0, "count": 0})
+        bucket["count"] += 1
+        bucket["volume"] += tx.amount
+    return [buckets[day] for day in sorted(buckets)]
+
+
 def main():
-    st.markdown("""<style>
-    .block-container {max-width:1280px;padding-top:4rem;}
-    [data-testid="stMetric"] {background:#132127;border:1px solid #284039;border-radius:12px;padding:18px;}
-    [data-testid="stMetricLabel"] {color:#A4BDB5;}
-    h1 {letter-spacing:-.045em;font-weight:750;}
-    div.stButton > button[kind="primary"] {color:#0B1317;font-weight:700;}
-    </style>""", unsafe_allow_html=True)
+    css = (ROOT / "frontend" / "shell.css").read_text(encoding="utf-8")
+    st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
     st.sidebar.markdown("## ◈ NUKÚN × Akwɛ")
     st.sidebar.caption("Protéger l'argent. Comprendre l'activité.")
@@ -262,27 +267,26 @@ def main():
             return
 
         if page == "Vue d'ensemble":
-            st.caption("NUKÚN × Akwɛ / PROTOTYPE DE RECHERCHE")
-            st.title("La confiance commence\npar comprendre les flux.")
-            st.markdown("Un même historique pour **repérer les transferts suspects** et **tenir les comptes des commerçants**. "
-                        "Akwɛ apporte un contexte commercial au moteur de risque ; son effet est mesuré sur simulation.")
-            a, b, c = st.columns(3)
-            a.metric("Transactions simulées", f"{len(dataset.transactions):,}".replace(",", " "))
-            b.metric("Fenêtre d'analyse", "7 jours")
-            c.metric("Solde de démonstration", money(wallet.balance))
-            st.write("")
-            left, right = st.columns([1.1, 1])
-            with left:
-                st.subheader("Le commerçant derrière les paiements")
+            st.title("La confiance commence par comprendre les flux.")
+            st.write("Suivez votre portefeuille, vérifiez un transfert et tenez votre cahier commercial.")
+            assets = ROOT / "frontend" / "assets"
+            dashboard = st.components.v2.component(
+                "nukun_workspace",
+                html='<div class="workspace-mount"></div>',
+                css="/* NUKÚN × Akwɛ */\n" + (assets / "workspace.css").read_text(encoding="utf-8"),
+                js=(assets / "workspace.js").read_text(encoding="utf-8"),
+            )
+            def navigate():
+                target = st.session_state.workspace.navigate
+                if target in {"NUKÚN Protège", "Cahier Akwɛ", "Résultats", "Laboratoire graphe"}:
+                    st.session_state.page = target
+
+            dashboard(key="workspace", on_navigate_change=navigate,
+                      data={"balance": wallet.balance, "total": len(dataset.transactions),
+                            "entries": db.summary("M000")["confirmed_count"], "days": daily_flows(dataset)})
+            with st.expander("Encaissements du commerçant M000"):
                 st.plotly_chart(graph_figure(history, "M000", now_sim), width="stretch")
-                st.caption("Encaissements fictifs de M000, 16 contreparties au maximum. La visualisation n'est pas un GNN.")
-            with right:
-                st.subheader("Trois parcours à explorer")
-                st.markdown("**01 · Protéger un transfert**\n\nAnalysez le destinataire, consultez les motifs et confirmez le paiement fictif.")
-                st.markdown("**02 · Confirmer une vente**\n\nSaisissez « J'ai vendu pour 12 000 francs », vérifiez l'écriture et rapprochez le paiement.")
-                st.markdown("**03 · Examiner les résultats**\n\nComparez règles, modèle historique et contexte Akwɛ sur les mêmes périodes de test.")
-                st.caption("La saisie texte est opérationnelle. L'expérience GraphSAGE figure dans les résultats ; "
-                           "la voix fon et les mesures GPU restent à réaliser.")
+                st.caption("Encaissements fictifs de M000, 16 contreparties au maximum.")
 
         elif page == "NUKÚN Protège":
             st.caption("01 / PRÉPARER · COMPRENDRE · CONFIRMER")

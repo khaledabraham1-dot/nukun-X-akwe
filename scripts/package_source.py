@@ -15,6 +15,10 @@ DIRECTORIES = ["nukun", "tests", "docs", "configs", "artifacts", "reports", "scr
 
 def source_paths():
     paths = [ROOT / name for name in TOP_LEVEL]
+    frontend = ROOT / "frontend"
+    paths.extend(p for p in frontend.iterdir() if p.is_file())
+    for folder in ["src", "assets"]:
+        paths.extend(p for p in (frontend / folder).rglob("*") if p.is_file())
     paths.extend([ROOT / ".streamlit" / "config.toml", ROOT / ".github" / "workflows" / "checks.yml", ROOT / "data" / "README.md"])
     for directory in DIRECTORIES:
         paths.extend(path for path in (ROOT / directory).rglob("*") if path.is_file()

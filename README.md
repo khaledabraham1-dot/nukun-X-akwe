@@ -22,6 +22,10 @@ Ouvrir `http://127.0.0.1:8501`. Si les dépendances sont déjà installées, `py
 
 L'artefact JSON du premier modèle et les résultats sont versionnés. Si les données générées sont absentes, l'application les régénère avec la seed de l'artefact, vérifie leur empreinte puis charge l'historique. Le premier chargement prend quelques secondes ; aucun accès réseau n'est nécessaire pour la démo une fois les dépendances installées.
 
+## Modifier l’interface
+
+L’accueil React et TypeScript est livré compilé avec l’application. Pour modifier le frontend, ouvrez le dossier `frontend`, exécutez `npm ci` puis `npm run build`. La compilation contrôle les types et produit les ressources locales Tailwind et React dans `frontend/assets`. Les composants Button et Tabs sont adaptés du registre officiel shadcn/ui New York (révision `055aa6b`). Le menu des paramètres Streamlit permet de choisir le thème clair ou sombre.
+
 ## Reproduire les résultats
 
 ```powershell

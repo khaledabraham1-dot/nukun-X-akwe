@@ -11,3 +11,4 @@ data/generated/
 artifacts/*.npz
 *.log
 dist/
+frontend/node_modules/
