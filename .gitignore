@@ -12,3 +12,8 @@ artifacts/*.npz
 *.log
 dist/
 frontend/node_modules/
+node_modules/
+web/dist/
+.vercel/
+fon-service/models/
+fon-service/.venv/

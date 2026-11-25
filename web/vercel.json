@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "api/*.py": {
+      "includeFiles": "api/_lib/**",
+      "excludeFiles": "{node_modules,dist,src,public,.vercel}/**",
+      "maxDuration": 10
+    }
+  }
+}

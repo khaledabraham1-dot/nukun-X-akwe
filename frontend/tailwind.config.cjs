@@ -1,1 +1,0 @@
-module.exports={content:["./src/**/*.{ts,tsx}"],corePlugins:{preflight:false},theme:{extend:{colors:Object.fromEntries(["background","foreground","primary","primary-foreground","muted","muted-foreground","ring","input","accent","accent-foreground"].map(k=>[k,"var(--"+k+")"]))}}}

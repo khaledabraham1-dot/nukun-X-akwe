@@ -1,3 +1,0 @@
-# Optionnel : parcours de navigateur réels, séparés de unittest/AppTest.
-playwright==1.65.2
-greenlet==3.5.6
