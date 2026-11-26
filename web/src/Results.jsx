@@ -58,7 +58,7 @@ export default function Results() {
           <div className="font-semibold text-fg">Ce que nous avons appris</div>
           <ul className="mt-3 space-y-2 text-sm text-fg/80">
             <li>✅ <b className="text-fg">Le graphe fait la différence.</b> Un commerçant et une mule reçoivent tous deux de l'argent de nombreuses personnes. Regarder le voisinage (qui paie, qui revient, où l'argent repart) permet de les distinguer.</li>
-            <li>⚖️ <b className="text-fg">Notre hypothèse sur Akwɛ n'est pas confirmée.</b> Ajouter les ventes déclarées n'améliore pas le modèle de façon stable sur ce protocole difficile. Nous le publions tel quel. Akwɛ garde sa valeur pour le commerçant : cahier, bilan, accès au crédit.</li>
+            <li>⚖️ <b className="text-fg">Une hypothèse non confirmée.</b> Ajouter les ventes déclarées par les commerçants n'améliore pas le modèle de façon stable sur ce protocole difficile. Nous le publions tel quel.</li>
             <li>🧪 <b className="text-fg">Les nouveaux comptes restent difficiles</b>, comme dans la réalité.</li>
           </ul>
         </div>

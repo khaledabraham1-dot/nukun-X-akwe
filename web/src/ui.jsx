@@ -57,8 +57,8 @@ export function Intro({ onDone }) {
           <circle className="intro-pupil" cx="60" cy="35" r="14" fill="url(#ig)" />
           <circle className="intro-pupil" cx="65" cy="30" r="4" fill="#050914" />
         </svg>
-        <div className="intro-title mt-6 font-display text-5xl font-extrabold tracking-tight text-white md:text-7xl">NUKÚN <span className="text-[#f7c548]">×</span> Akwɛ</div>
-        <div className="intro-sub mt-4 text-base text-slate-300 md:text-lg">Protéger l'argent mobile, puis le faire grandir.</div>
+        <div className="intro-title mt-6 font-display text-5xl font-extrabold tracking-tight text-white md:text-7xl">NUKÚN <span className="text-[#f7c548]">Call Guard</span></div>
+        <div className="intro-sub mt-4 text-base text-slate-300 md:text-lg">Détecter. Vérifier. Protéger.</div>
         <div className="intro-sub mt-10 h-1 w-48 overflow-hidden rounded-full bg-white/10"><div className="intro-bar h-full bg-gradient-to-r from-[#e8a317] to-[#ffd76a]" /></div>
       </div>
       <button onClick={onDone} className="absolute bottom-8 right-8 rounded-full border border-white/20 px-4 py-2 text-sm text-slate-300 hover:bg-white/10">Passer</button>

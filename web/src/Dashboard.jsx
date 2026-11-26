@@ -1,40 +1,28 @@
 import { useEffect, useState } from "react";
 import { fmt, load } from "./lib.js";
 import { fonHealth } from "./fonapi.js";
-import QuickEntry from "./QuickEntry.jsx";
-import { downloadReport } from "./report.js";
+import { LEVELS } from "./callguard.js";
 
 const LABEL = {
-  sent: (e) => `Envoi de ${fmt(e.amount)} à ${e.to}`,
+  call_blocked: (e) => `Appel suspect interrompu : ${e.number}`,
+  call: (e) => `Appel analysé : ${e.number}`,
+  blocked: (e) => `Transfert bloqué : ${fmt(e.amount)} vers ${e.to}`,
+  sent: (e) => `Transfert vérifié : ${fmt(e.amount)} à ${e.to}`,
   sent_despite_alert: (e) => `Envoi malgré l'alerte : ${fmt(e.amount)} à ${e.to}`,
-  blocked: (e) => `Arnaque évitée : ${fmt(e.amount)} vers ${e.to}`,
   message: (e) => (e.level === "low" ? "Message vérifié : rien de suspect" : `Message suspect : ${e.why}`),
-  ledger: (e) => `Cahier : ${e.kind} de ${fmt(e.amount)}`,
   translation: (e) => `Traduction ${e.dir}`,
-  loan: (e) => `Demande de prêt de ${fmt(e.amount)} envoyée`,
-  loan_granted: (e) => `Prêt de ${fmt(e.amount)} accordé par ${e.by}`,
 };
-const DOT = { blocked: "bg-safe", sent: "bg-sky-400", sent_despite_alert: "bg-danger", message: "bg-warn", ledger: "bg-gold-400", translation: "bg-violet-400", loan: "bg-gold-500" };
+const DOT = { call_blocked: "bg-danger", call: "bg-sky-400", blocked: "bg-safe", sent: "bg-sky-400", sent_despite_alert: "bg-danger", message: "bg-warn", translation: "bg-violet-400" };
 
-export default function Dashboard({ go, user }) {
-  const [api, setApi] = useState(null);
+export default function Dashboard({ go }) {
   const [fon, setFon] = useState(undefined);
-  const [, setTick] = useState(0);
   const events = load("nukun.events", []);
-  const balance = load("nukun.balance", 100000);
-  const entries = (load("akwe.entries2", [])).filter((e) => e.status === "confirmée");
-  const week = Date.now() - 7 * 86400e3;
-  const sales = entries.filter((e) => e.type === "vente" && e.at >= week).reduce((s, e) => s + e.amount, 0);
+  const incidents = load("nukun.incidents", []);
   const blocked = events.filter((e) => e.type === "blocked");
   const saved = blocked.reduce((s, e) => s + (e.amount || 0), 0);
-  const msgs = events.filter((e) => e.type === "message");
-  const flagged = msgs.filter((e) => e.level !== "low").length;
-
-  useEffect(() => {
-    const t0 = performance.now();
-    fetch("/api/health").then((r) => (r.ok ? r.json() : null)).then((j) => setApi(j ? { ...j, ms: performance.now() - t0 } : false)).catch(() => setApi(false));
-    fonHealth().then(setFon);
-  }, []);
+  const calls = incidents.filter((i) => i.level >= 2);
+  const msgs = events.filter((e) => e.type === "message" && e.level !== "low");
+  useEffect(() => { fonHealth().then(setFon); }, []);
 
   const Tile = ({ label, value, sub, tone = "", onClick }) => (
     <button onClick={onClick} className="card p-5 text-left transition hover:-translate-y-0.5">
@@ -46,54 +34,53 @@ export default function Dashboard({ go, user }) {
 
   return (
     <div className="space-y-6">
-      <QuickEntry onSaved={() => setTick((x) => x + 1)} />
+      <div className="card overflow-hidden p-0">
+        <div className="relative grid items-center gap-6 bg-gradient-to-br from-[#0b1f3a] via-[#13284d] to-[#1d1446] p-8 text-white md:grid-cols-[1fr_auto]">
+          <div className="pointer-events-none absolute -right-10 -top-16 h-64 w-64 rounded-full bg-[#f7c548]/20 blur-3xl" />
+          <div className="relative">
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-green-300"><span className="h-2 w-2 rounded-full bg-safe shadow-[0_0_10px_#22c55e]" />Protection active</div>
+            <div className="mt-2 font-display text-3xl font-extrabold">Vos appels et vos transferts sont surveillés.</div>
+            <p className="mt-2 max-w-xl text-slate-300">NUKÚN vous prévient pendant un appel suspect, avant un transfert risqué, et dans votre langue.</p>
+          </div>
+          <button onClick={() => go("call")} className="btn-gold relative rounded-full px-6 py-3 text-base">📞 Tester Call Guard</button>
+        </div>
+      </div>
+
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <Tile label="Solde du portefeuille" value={fmt(balance)} sub="Disponible" onClick={() => go("wallet")} />
-        <Tile label="Arnaques évitées" value={blocked.length} tone="text-good" sub={saved ? `${fmt(saved)} protégés` : "Aucune pour l'instant"} onClick={() => go("wallet")} />
-        <Tile label="Messages vérifiés" value={msgs.length} sub={`${flagged} suspect${flagged > 1 ? "s" : ""}`} tone={flagged ? "text-caution" : ""} onClick={() => go("scam")} />
-        <Tile label="Ventes de la semaine" value={fmt(sales)} tone="text-accent" sub="Mon cahier Akwɛ" onClick={() => go("akwe")} />
+        <Tile label="Appels suspects interrompus" value={calls.length} tone={calls.length ? "text-good" : ""} sub="Call Guard" onClick={() => go("call")} />
+        <Tile label="Transferts bloqués" value={blocked.length} tone={blocked.length ? "text-good" : ""} sub={saved ? `${fmt(saved)} protégés` : "Aucun pour l'instant"} onClick={() => go("wallet")} />
+        <Tile label="Messages suspects repérés" value={msgs.length} tone={msgs.length ? "text-caution" : ""} sub="SMS, WhatsApp" onClick={() => go("scam")} />
+        <Tile label="Langue de protection" value={fon?.ok ? "FR + Fɔn" : "Français"} tone="text-accent" sub={fon?.ok ? "Alertes traduites en fɔngbè" : "Service fon non démarré"} onClick={() => go("fon")} />
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
         <div className="card p-6">
-          <div className="flex items-center justify-between"><div className="font-semibold">Activité récente</div><span className="text-xs text-subtle">{events.length} événements</span></div>
-          {events.length === 0 ? (
-            <p className="mt-6 text-sm text-muted">Rien encore. Essayez un transfert, un message suspect ou une dictée dans le cahier.</p>
-          ) : (
-            <ul className="mt-4 space-y-3">
-              {events.slice(0, 9).map((e) => (
-                <li key={e.id} className="flex items-start gap-3 text-sm">
-                  <span className={`mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full ${DOT[e.type] || "bg-subtle"}`} />
-                  <span className="flex-1">{(LABEL[e.type] || (() => e.type))(e)}</span>
-                  <span className="shrink-0 text-xs text-subtle">{new Date(e.at).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}</span>
-                </li>
-              ))}
-            </ul>
+          <div className="flex items-center justify-between"><div className="font-semibold">Activité de protection</div><span className="text-xs text-subtle">{events.length} événements</span></div>
+          {events.length === 0 ? <p className="mt-6 text-sm text-muted">Rien encore. Simulez un appel suspect, un transfert ou un message.</p> : (
+            <ul className="mt-4 space-y-3">{events.slice(0, 9).map((e) => (
+              <li key={e.id} className="flex items-start gap-3 text-sm">
+                <span className={`mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full ${DOT[e.type] || "bg-subtle"}`} />
+                <span className="flex-1">{(LABEL[e.type] || (() => e.type))(e)}</span>
+                <span className="shrink-0 text-xs text-subtle">{new Date(e.at).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}</span>
+              </li>
+            ))}</ul>
           )}
         </div>
         <div className="space-y-6">
           <div className="card p-6">
             <div className="font-semibold">Actions rapides</div>
             <div className="mt-4 grid grid-cols-2 gap-3">
-              {[["wallet", "Envoyer de l'argent"], ["loan", "Demander un prêt"], ["akwe", "Noter une vente"], ["scam", "Vérifier un message"]].map(([k, l]) => <button key={k} onClick={() => go(k)} className="btn-ghost justify-start rounded-2xl py-3">{l}</button>)}
-              <button onClick={() => downloadReport(user)} className="btn-gold col-span-2 rounded-2xl py-3">📄 Rapport de chiffre d'affaires (PDF)</button>
+              {[["call", "Simuler un appel"], ["wallet", "Envoyer de l'argent"], ["scam", "Vérifier un message"], ["fon", "Traduire le fon"]].map(([k, l]) => <button key={k} onClick={() => go(k)} className="btn-ghost justify-start rounded-2xl py-3">{l}</button>)}
             </div>
           </div>
-          <div className="card flex items-center gap-4 p-6">
-            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-safe/15 text-2xl">🛡️</span>
-            <div><div className="font-semibold">Protection active</div><div className="text-sm text-muted">Chaque envoi est vérifié avant de partir.</div></div>
+          <div className="card p-6">
+            <div className="font-semibold">Derniers incidents d'appel</div>
+            {incidents.length === 0 ? <p className="mt-3 text-sm text-muted">Aucun incident.</p> : (
+              <ul className="mt-3 space-y-2 text-sm">{incidents.slice(0, 4).map((i) => <li key={i.id} className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full" style={{ background: LEVELS[i.level].color }} /><span className="font-semibold">{i.number}</span><span className="ml-auto text-xs text-muted">{LEVELS[i.level].name}</span></li>)}</ul>
+            )}
           </div>
         </div>
       </div>
     </div>
-  );
-}
-
-function Status({ ok, label, detail }) {
-  return (
-    <li className="flex items-center gap-3">
-      <span className={`h-2.5 w-2.5 rounded-full ${ok === null ? "bg-subtle" : ok ? "bg-safe shadow-[0_0_8px_#22c55e]" : "bg-warn"}`} />
-      <span className="flex-1">{label}</span><span className="text-xs text-subtle">{detail}</span>
-    </li>
   );
 }

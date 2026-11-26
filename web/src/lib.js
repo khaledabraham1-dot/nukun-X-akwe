@@ -56,7 +56,6 @@ export function explainFacts(f, profileHint) {
   if (f.recent_outgoing_share > 0.15) out.push({ k: "recent", txt: `Sorties importantes ces dernières 24 h (${pct(Math.min(1, f.recent_outgoing_share))} des entrées)`, level: "bad" });
   out.push({ k: "age", txt: f.account_age_days < 10 ? `Compte récent : actif depuis ${Math.max(1, Math.round(f.account_age_days))} jours` : `Compte actif depuis ${Math.round(f.account_age_days)} jours`, level: f.account_age_days < 10 ? "bad" : "ok" });
   out.push({ k: "repeat", txt: `${pct(f.repeat_share)} des dépôts viennent de clients qui reviennent`, level: f.repeat_share > 0.3 ? "ok" : "watch" });
-  out.push({ k: "akwe", txt: f.matched_share > 0 ? `${pct(f.matched_share)} des encaissements correspondent à des ventes confirmées dans Akwɛ` : "Aucune vente confirmée dans Akwɛ", level: f.matched_share > 0.2 ? "ok" : "watch" });
   return out;
 }
 
@@ -90,11 +89,11 @@ export function save(key, value) {
 export const VARIANTS = [
   { key: "rules", label: "Règles simples", family: "Référence" },
   { key: "logistic_history", label: "Régression logistique", family: "Référence" },
-  { key: "logistic_akwe", label: "Régression + Akwɛ", family: "Référence" },
+  { key: "logistic_akwe", label: "Régression + ventes déclarées", family: "Référence" },
   { key: "mlp_history", label: "Réseau sans graphe (MLP)", family: "Contrôle" },
-  { key: "mlp_akwe", label: "MLP + Akwɛ", family: "Contrôle" },
+  { key: "mlp_akwe", label: "MLP + ventes déclarées", family: "Contrôle" },
   { key: "sage_history", label: "NUKÚN GraphSAGE", family: "Graphe" },
-  { key: "sage_akwe", label: "GraphSAGE + Akwɛ", family: "Graphe" },
+  { key: "sage_akwe", label: "GraphSAGE + ventes déclarées", family: "Graphe" },
 ];
 // [rappel, précision, AP, FPR commerçants, rappel imitateurs, alertes]
 export const STRESS = {

@@ -1,9 +1,11 @@
-# NUKÚN × Akwɛ
+# NUKÚN Call Guard
 
-**Protéger l'argent mobile des Béninois, puis le faire grandir.** Prototype du GPU Challenge 2026 (Fintech Academia × Next Fintech Forum, Epitech Bénin).
+**Arrêter l'arnaque pendant l'appel.** Prototype du GPU Challenge 2026 (Fintech Academia × Next Fintech Forum, Epitech Bénin), centré sur la sécurité Mobile Money et la traduction en fɔngbè.
 
-- **NUKÚN** (« l'œil » en fon) : au moment d'un transfert mobile money, un réseau de neurones sur graphe (GraphSAGE) analyse le compte destinataire. S'il ressemble à un compte mule, l'envoi est mis en pause et une alerte vocale explique le risque.
-- **Akwɛ** (« l'argent ») : la commerçante raconte sa journée à la voix, son cahier se remplit, son solde bouge, et son passeport de crédit lui ouvre un prêt en 48 h.
+- **Call Guard** : pendant un appel, NUKÚN vérifie le numéro dans un registre officiel, analyse ce qui est dit (identité annoncée, demande de code, demande d'argent, pression, phrases de prévention) et calcule un niveau de risque (faible, moyen, élevé, critique). En cas de risque, alerte visuelle et vocale, en français et en fɔngbè.
+- **Transferts protégés** : avant un envoi, un réseau de neurones sur graphe (GraphSAGE) repère les comptes mules.
+- **Messages suspects** : faux dépôts, faux placements, fausses offres de crédit.
+- **Traduction** : fon ↔ français (NLLB-200) et voix fɔngbè (MMS-TTS) pour analyser et alerter dans la langue de l'utilisateur.
 
 **Démo en ligne : https://nukun-web.vercel.app** (application dans `#/app`).
 
@@ -23,17 +25,13 @@
 
 ## L'application (`web/`)
 
-Parcours : page d'accueil, générique, connexion (« Je suis commerçant(e) » ou « Je suis un établissement »), puis un espace par profil.
+Parcours : page d'accueil, générique, puis cinq écrans.
 
-**Espace commerçante**
-- **Tableau de bord** : « Racontez votre journée » en français (micro) ou en fon (traduit) ; le cahier et le solde se mettent à jour.
-- **Portefeuille** : envoi d'argent à la voix ; NUKÚN vérifie le destinataire et met en pause les envois suspects.
+- **Tableau de bord** : état de la protection, appels suspects interrompus, transferts bloqués, messages repérés, journal.
+- **Call Guard** : trois appels simulés (faux agent MTN MoMo, faux dépôt par erreur, vrai service client vérifié), écoute d'un vrai appel en haut-parleur (français), analyse d'une phrase entendue en fɔngbè, alerte critique, raccrocher ou appeler le service officiel, journal des incidents. Moteur : `web/src/callguard.js`.
+- **Transferts** : envoi à la voix ; NUKÚN vérifie le destinataire (API GraphSAGE) et met en pause les envois suspects.
 - **Messages** : analyse d'un SMS ou message suspect, avec indices et bon réflexe.
-- **Cahier Akwɛ** : ventes, dépenses, dettes, bilan, passeport de crédit et **rapport de chiffre d'affaires en PDF**.
-- **Prêt en 48 h** : assistant vocal en 5 questions, suivi de la demande jusqu'au versement.
-- **Traducteur fon** : fon ↔ français et écoute en fon (service local requis).
-
-**Espace établissement** : demandes de prêt reçues, passeport Akwɛ, vérification NUKÚN, accord ou refus.
+- **Traducteur fon** : fon ↔ français et écoute en fɔngbè (service local requis).
 
 ```bash
 cd web
