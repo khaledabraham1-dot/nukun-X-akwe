@@ -21,7 +21,7 @@
 | `web/api/` | `/api/score` (score GraphSAGE avec les poids entraînés, rejoués en NumPy, ~20 ms), `/api/health`, `/api/accounts` |
 | `fon-service/` | Service local fon ↔ français : traduction NLLB-200 (CTranslate2 int8) et voix MMS-TTS, sur `127.0.0.1:8765` |
 | `nukun/`, `configs/`, `artifacts/`, `reports/`, `tests/`, `notebooks/` | Recherche : simulateur béninois, protocole de stress, entraînement et évaluation de GraphSAGE et des références |
-| `docs/` | Protocole (`PROTOCOLE_STRESS.md`), exécution GPU (`GPU.md`), présentation animée et dossier projet (`docs/pitch/`) |
+| `docs/` | Protocole (`PROTOCOLE_STRESS.md`), exécution GPU (`GPU.md`), présentation de la finale (`docs/pitch/NUKUN_CallGuard_Finale.html`) |
 
 ## L'application (`web/`)
 
