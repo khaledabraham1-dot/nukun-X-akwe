@@ -10,7 +10,7 @@ export default function Landing({ launch }) {
         <div className="glass flex items-center justify-between rounded-full py-2 pl-4 pr-2">
           <a href="#" className="flex items-center gap-2"><Eye /><span className="font-display text-lg font-bold tracking-tight">NUKÚN</span><span className="hidden rounded-full bg-accent/15 px-2 py-0.5 text-[10px] font-bold text-accent sm:inline">CALL GUARD</span></a>
           <nav className="hidden gap-1 md:flex">
-            {[["#comment", "Comment ça marche"], ["#fon", "En fɔngbè"], ["#resultats", "Résultats"]].map(([h, l]) => <a key={h} href={h} className="rounded-full px-3.5 py-1.5 text-sm text-muted hover:text-fg">{l}</a>)}
+            {[["#comment", "Comment ça marche"], ["#fon", "En fɔngbè"], ["#jury", "Pour le jury"], ["#resultats", "Résultats"]].map(([h, l]) => <a key={h} href={h} className="rounded-full px-3.5 py-1.5 text-sm text-muted hover:text-fg">{l}</a>)}
           </nav>
           <div className="flex items-center gap-2"><ThemeToggle dark={dark} setDark={setDark} /><button onClick={launch} className="btn-gold rounded-full">Lancer l'appli</button></div>
         </div>
@@ -73,8 +73,34 @@ export default function Landing({ launch }) {
         </div>
       </section>
 
+      <section id="jury" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-12">
+        <div className="kicker">Pour le jury</div>
+        <h2 className="h-section mt-2">Cinq critères, cinq preuves</h2>
+        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {[
+            ["💼", "Utilité métier", ["L'utilisateur garde son code et son argent, prévenu à voix haute dans sa langue.", "L'opérateur a moins de fraudes à rembourser et moins de réclamations.", "Le commerçant n'est plus bloqué à tort."]],
+            ["📈", "Résultat technique", ["Call Guard : faux agent → Critique, faux dépôt → Élevé, vrai service → Faible.", "GraphSAGE : précision 0,61 contre 0,19 ; fausses alertes 17 % contre 81 %.", "Score en ≈ 20 ms, traduction fon en ≈ 1 s, 72/72 tests de compréhension."]],
+            ["🧪", "Qualité des données", ["Adaptées : scénarios béninois (faux agents, faux dépôts, mules, imitateurs, nouveaux comptes).", "Propres : découpage dans le temps, aucune fuite, 3 tirages, intervalles de confiance.", "Autorisées : aucune donnée personnelle ; corpus fon CC-BY-SA avec consentement."]],
+            ["🔁", "Reproductibilité", ["Protocole figé et signé avant les essais, graines fixées.", "115 tests automatiques, poids rejouables (écart nul sur 105 comptes).", "Code, README et démo publics ; modèles de langue ouverts."]],
+            ["🚀", "Faisabilité d'un pilote", ["Application en ligne, API de score déjà déployée.", "Traduction fon sur un simple ordinateur portable.", "Pilote gratuit de 6 mois avec un opérateur, puis licence."]],
+            ["⚖️", "Limites assumées", ["Registre de numéros et transactions de démonstration.", "Accès au flux d'appel : nécessite l'accord de l'opérateur.", "NLLB et MMS : licence non commerciale, à négocier avant la commercialisation."]],
+          ].map(([ic, t, items]) => (
+            <div key={t} className="card p-6">
+              <div className="text-3xl">{ic}</div>
+              <div className="mt-3 font-display text-lg font-bold">{t}</div>
+              <ul className="mt-3 space-y-2 text-sm text-muted">{items.map((x) => <li key={x} className="flex gap-2"><span className="text-accent">●</span><span>{x}</span></li>)}</ul>
+            </div>
+          ))}
+        </div>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a href="https://github.com/khaledabraham1-dot/nukun-X-akwe" target="_blank" rel="noreferrer" className="btn-ghost rounded-full">💻 Code et protocole sur GitHub</a>
+          <a href="https://github.com/khaledabraham1-dot/nukun-X-akwe/blob/master/reports/STRESS_RESULTATS.md" target="_blank" rel="noreferrer" className="btn-ghost rounded-full">📊 Résultats détaillés</a>
+          <button onClick={launch} className="btn-gold rounded-full">▶ Essayer l'appli</button>
+        </div>
+      </section>
+
       <section id="resultats" className="mx-auto max-w-6xl scroll-mt-24 px-4 pb-16 pt-4">
-        <div className="kicker">Pour le jury · transferts protégés</div>
+        <div className="kicker">Détail · transferts protégés</div>
         <h2 className="h-section mb-8 mt-2">Résultats mesurés</h2>
         <Results />
       </section>

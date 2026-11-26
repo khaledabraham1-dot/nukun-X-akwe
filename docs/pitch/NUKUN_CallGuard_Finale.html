@@ -223,6 +223,61 @@ p,.p{font:500 32px/1.45 Inter;color:var(--muted)}
   <div class="notes">Les résultats du bouclier transferts, en moyenne sur trois essais : GraphSAGE triple la précision moyenne par rapport à une régression logistique, 0,61 contre 0,19, et divise par plus de quatre les commerçants alertés à tort, 17 % contre 81 %. Protocole figé avant les essais, données simulées.</div>
 </section>
 
+<!-- 12a résultat technique -->
+<section class="slide" data-bg="2">
+  <div class="k a">Critère du jury · Résultat technique</div>
+  <h2 class="a" style="--d:1;margin-top:20px">Mesuré, <span class="gold">module par module.</span></h2>
+  <div class="glass a" style="--d:2;margin-top:44px;border-radius:30px;overflow:hidden">
+    <div style="display:grid;grid-template-columns:360px 1fr 330px;padding:18px 34px;background:rgba(255,255,255,.06)"><span class="s" style="font-weight:700;color:#fff">Module</span><span class="s" style="font-weight:700;color:#fff">Mesure</span><span class="s" style="font-weight:700;color:#fff">Résultat</span></div>
+    <div style="display:grid;grid-template-columns:360px 1fr 330px;padding:18px 34px;border-top:1px solid rgba(255,255,255,.08)"><span class="s" style="color:#fff">📞 Call Guard</span><span class="s">3 scénarios : faux agent, faux dépôt, vrai service client</span><span class="s gold" style="font-weight:700">Critique · Élevé · Faible</span></div>
+    <div style="display:grid;grid-template-columns:360px 1fr 330px;padding:18px 34px;border-top:1px solid rgba(255,255,255,.08)"><span class="s" style="color:#fff">📞 Call Guard</span><span class="s">« Ne donnez jamais votre code » (phrase de prévention)</span><span class="s gold" style="font-weight:700">Pas d'alerte ✓</span></div>
+    <div style="display:grid;grid-template-columns:360px 1fr 330px;padding:18px 34px;border-top:1px solid rgba(255,255,255,.08)"><span class="s" style="color:#fff">🕸️ GraphSAGE</span><span class="s">Précision moyenne (AP) contre régression logistique</span><span class="s gold" style="font-weight:700">0,61 contre 0,19</span></div>
+    <div style="display:grid;grid-template-columns:360px 1fr 330px;padding:18px 34px;border-top:1px solid rgba(255,255,255,.08)"><span class="s" style="color:#fff">🕸️ GraphSAGE</span><span class="s">Commerçants honnêtes alertés à tort</span><span class="s gold" style="font-weight:700">17 % contre 81 %</span></div>
+    <div style="display:grid;grid-template-columns:360px 1fr 330px;padding:18px 34px;border-top:1px solid rgba(255,255,255,.08)"><span class="s" style="color:#fff">⚡ API de score</span><span class="s">Temps de calcul d'un score, en ligne</span><span class="s gold" style="font-weight:700">≈ 20 ms</span></div>
+    <div style="display:grid;grid-template-columns:360px 1fr 330px;padding:18px 34px;border-top:1px solid rgba(255,255,255,.08)"><span class="s" style="color:#fff">🗣️ Traduction fon</span><span class="s">Phrase traduite sur un ordinateur portable</span><span class="s gold" style="font-weight:700">≈ 1 s</span></div>
+    <div style="display:grid;grid-template-columns:360px 1fr 330px;padding:18px 34px;border-top:1px solid rgba(255,255,255,.08)"><span class="s" style="color:#fff">💬 Compréhension</span><span class="s">Montants en lettres, contacts, intentions, arnaques</span><span class="s gold" style="font-weight:700">72 / 72 tests</span></div>
+  </div>
+  <p class="s a" style="--d:4;margin-top:24px">Ce qui reste difficile : les comptes très récents, et l'apport des ventes déclarées (non confirmé, publié tel quel).</p>
+  <div class="notes">Critère résultat technique, module par module. Call Guard classe correctement nos trois scénarios : faux agent en critique, faux dépôt en élevé, vrai service client en faible, et ne déclenche pas d'alerte sur une phrase de prévention. GraphSAGE atteint une précision moyenne de 0,61 contre 0,19 pour une régression logistique, et n'alerte à tort que 17 % des commerçants contre 81 %. L'API calcule un score en une vingtaine de millisecondes, la traduction fon prend environ une seconde sur un portable, et la compréhension du français passe 72 tests sur 72. Ce qui reste difficile : les comptes très récents, et l'apport des ventes déclarées, que nous n'avons pas confirmé et que nous publions tel quel.</div>
+</section>
+
+<!-- 12a2 qualité des données -->
+<section class="slide" data-bg="3">
+  <div class="k a">Critère du jury · Qualité des données</div>
+  <h2 class="a" style="--d:1;margin-top:20px">Adaptées au Bénin. <span class="gold">Utilisées dans les règles.</span></h2>
+  <div class="row" style="margin-top:44px;gap:26px;align-items:stretch">
+    <div class="glass card a l" style="--d:2;flex:1;padding:34px"><h3 style="font-size:32px">🇧🇯 Adaptées</h3>
+      <p class="s" style="margin-top:14px">Simulateur de scénarios béninois : <b style="color:#fff">faux agents, faux dépôts, comptes mules, imitateurs, commerçants, agents MoMo</b></p>
+      <p class="s" style="margin-top:12px">Pièges volontaires : <b style="color:#fff">nouveaux comptes</b> à partir du jour 24, fraudeurs qui déclarent des montants exacts</p>
+      <p class="s" style="margin-top:12px">Scénarios d'appel tirés des modes opératoires réels décrits par les victimes</p></div>
+    <div class="glass card a" style="--d:3;flex:1;padding:34px"><h3 style="font-size:32px">🧪 Propres</h3>
+      <p class="s" style="margin-top:14px"><b style="color:#fff">Découpage dans le temps</b> : apprendre sur le passé, tester sur le futur</p>
+      <p class="s" style="margin-top:12px">Aucune fuite : les étiquettes ne sont jamais des entrées du modèle</p>
+      <p class="s" style="margin-top:12px">3 tirages, intervalles de confiance, résultats défavorables publiés</p></div>
+    <div class="glass gr card a r" style="--d:4;flex:1;padding:34px"><h3 style="font-size:32px">✅ Autorisées</h3>
+      <p class="s" style="margin-top:14px"><b style="color:#fff">Aucune donnée personnelle réelle</b> : transactions simulées, registre de démonstration</p>
+      <p class="s" style="margin-top:12px">Corpus fon J'aime Ma Langue : licence ouverte CC-BY-SA, voix données avec consentement</p>
+      <p class="s" style="margin-top:12px">NLLB et MMS : licence non commerciale, adaptée au pilote ; à négocier avant la commercialisation</p></div>
+  </div>
+  <p class="s a" style="--d:5;margin-top:26px">En pilote : données d'opérateur anonymisées, consentement explicite pour la voix, aucun enregistrement conservé.</p>
+  <div class="notes">Critère qualité des données. Elles sont adaptées au Bénin : notre simulateur reproduit les scénarios d'ici, faux agents, faux dépôts, comptes mules, imitateurs, commerçants et agents MoMo, avec des pièges volontaires comme de nouveaux comptes qui apparaissent au jour 24. Elles sont propres : découpage dans le temps, aucune fuite, trois tirages et des intervalles de confiance, y compris les résultats défavorables. Et elles sont autorisées : aucune donnée personnelle réelle, le corpus fon J'aime Ma Langue est sous licence ouverte avec le consentement des locuteurs, et les modèles NLLB et MMS sont sous licence non commerciale, ce qui convient au pilote ; nous négocierons avant toute commercialisation. Pendant le pilote : données d'opérateur anonymisées, consentement explicite pour la voix, et aucun enregistrement conservé.</div>
+</section>
+
+<!-- 12b reproductibilité -->
+<section class="slide" data-bg="0">
+  <div class="k a">Critère du jury · Reproductibilité</div>
+  <h2 class="a" style="--d:1;margin-top:20px">Tout se refait, <span class="gold">à l'identique.</span></h2>
+  <div class="row" style="margin-top:50px;gap:24px;flex-wrap:wrap">
+    <div class="glass card a" style="--d:2;flex:1 1 30%;padding:30px"><div style="font-size:44px">🔒</div><h3 style="margin-top:10px;font-size:30px">Protocole figé avant</h3><p class="s" style="margin-top:8px">Fichier de protocole signé (SHA-256) avant les essais, seuils gelés sur la validation</p></div>
+    <div class="glass card a" style="--d:3;flex:1 1 30%;padding:30px"><div style="font-size:44px">🎲</div><h3 style="margin-top:10px;font-size:30px">Données régénérables</h3><p class="s" style="margin-top:8px">Simulateur déterministe : 3 graines fixées, empreinte vérifiée à chaque chargement</p></div>
+    <div class="glass card a" style="--d:4;flex:1 1 30%;padding:30px"><div style="font-size:44px">✅</div><h3 style="margin-top:10px;font-size:30px">115 tests automatiques</h3><p class="s" style="margin-top:8px">43 tests du moteur de recherche, 72 tests de compréhension du français</p></div>
+    <div class="glass card a" style="--d:5;flex:1 1 30%;padding:30px"><div style="font-size:44px">⚖️</div><h3 style="margin-top:10px;font-size:30px">Poids rejouables</h3><p class="s" style="margin-top:8px">Poids exportés en JSON ; l'API redonne les mêmes scores (écart nul sur 105 comptes)</p></div>
+    <div class="glass card a" style="--d:6;flex:1 1 30%;padding:30px"><div style="font-size:44px">🌍</div><h3 style="margin-top:10px;font-size:30px">Modèles ouverts</h3><p class="s" style="margin-top:8px">NLLB-200 et MMS de Meta, téléchargeables par tous</p></div>
+    <div class="glass g card a" style="--d:7;flex:1 1 30%;padding:30px"><div style="font-size:44px">💻</div><h3 style="margin-top:10px;font-size:30px">Code et démo ouverts</h3><p class="s" style="margin-top:8px">GitHub nukun-X-akwe · nukun-web.vercel.app · commandes dans le README</p></div>
+  </div>
+  <div class="notes">Critère reproductibilité. Le protocole d'évaluation a été figé et signé avant les essais, et les seuils gelés sur la validation. Les données viennent d'un simulateur déterministe : trois graines fixées, et une empreinte vérifiée à chaque chargement. 115 tests automatiques : 43 sur le moteur de recherche, 72 sur la compréhension du français. Les poids sont exportés en JSON, et notre API redonne exactement les mêmes scores sur les 105 comptes testés. Les modèles de langue sont ouverts, et le code, le README et la démo sont publics.</div>
+</section>
+
 <!-- 13 fon -->
 <section class="slide" data-bg="2">
   <div class="k a">Sécurité et traduction</div>
@@ -268,6 +323,19 @@ p,.p{font:500 32px/1.45 Inter;color:var(--muted)}
     <div class="glass g card a r" style="--d:3;flex:1"><h3 class="gold">Il nous faut</h3><p class="s" style="margin-top:16px;color:#fff">Le registre officiel des opérateurs</p><p class="s" style="margin-top:12px;color:#fff">Un accès autorisé au flux d'appel (opérateur)</p><p class="s" style="margin-top:12px;color:#fff">Des GPU pour la reconnaissance du fon parlé</p><p class="s" style="margin-top:12px;color:#fff">Consentement et protection des données vocales</p></div>
   </div>
   <div class="notes">Nous sommes honnêtes sur nos limites. Aujourd'hui : appels simulés ou en haut-parleur, registre de démonstration, transferts simulés, fon écrit et lu mais pas encore reconnu à l'oral. Pour passer au réel, il nous faut le registre officiel des opérateurs, un accès autorisé au flux d'appel, des GPU pour la reconnaissance du fon parlé, et des règles strictes de consentement pour les données vocales.</div>
+</section>
+
+<!-- 16b utilité métier -->
+<section class="slide" data-bg="3">
+  <div class="k a">Critère du jury · Utilité métier</div>
+  <h2 class="a" style="--d:1;margin-top:20px">Chacun y gagne <span class="gold">quelque chose de concret.</span></h2>
+  <div class="row" style="margin-top:56px;gap:26px;align-items:stretch">
+    <div class="glass g card a" style="--d:2;flex:1"><div style="font-size:56px">👤</div><h3 style="margin-top:14px;font-size:34px">L'utilisateur</h3><p class="s" style="margin-top:12px;color:#fff">Garde son code et son argent.</p><p class="s" style="margin-top:10px">Prévenu à voix haute, dans sa langue, sans savoir lire.</p></div>
+    <div class="glass card a" style="--d:3;flex:1"><div style="font-size:56px">📡</div><h3 style="margin-top:14px;font-size:34px">L'opérateur</h3><p class="s" style="margin-top:12px;color:#fff">Moins de fraudes à rembourser, moins de réclamations.</p><p class="s" style="margin-top:10px">La réglementation BCEAO le rend en principe responsable des opérations non consenties.</p></div>
+    <div class="glass card a" style="--d:4;flex:1"><div style="font-size:56px">🏪</div><h3 style="margin-top:14px;font-size:34px">Le commerçant</h3><p class="s" style="margin-top:12px;color:#fff">N'est plus bloqué à tort.</p><p class="s" style="margin-top:10px">Fausses alertes divisées par plus de 4 sur les transferts.</p></div>
+    <div class="glass card a" style="--d:5;flex:1"><div style="font-size:56px">🏛️</div><h3 style="margin-top:14px;font-size:34px">L'écosystème</h3><p class="s" style="margin-top:12px;color:#fff">Plus de confiance dans le paiement instantané.</p><p class="s" style="margin-top:10px">Journal d'incidents pour suivre les modes opératoires.</p></div>
+  </div>
+  <div class="notes">Critère utilité métier. L'utilisateur garde son code et son argent, et il est prévenu à voix haute, dans sa langue, même sans savoir lire. L'opérateur a moins de fraudes à rembourser et moins de réclamations : la réglementation BCEAO le rend en principe responsable des opérations non consenties. Le commerçant n'est plus bloqué à tort : sur les transferts, les fausses alertes sont divisées par plus de quatre. Et tout l'écosystème gagne en confiance dans le paiement instantané, avec un journal d'incidents pour suivre les modes opératoires des escrocs.</div>
 </section>
 
 <!-- 17 business -->
@@ -331,6 +399,20 @@ p,.p{font:500 32px/1.45 Inter;color:var(--muted)}
     <div class="pill glass" style="font-size:20px">📡 Mise en attente de l'appel avec l'opérateur</div><div class="pill glass" style="font-size:20px">🖼️ Lecture des captures d'écran</div><div class="pill glass" style="font-size:20px">🎭 Détection des voix clonées</div><div class="pill glass" style="font-size:20px">🌍 Yoruba, mina, dendi</div>
   </div>
   <div class="notes">Nos fonctionnalités futures. Après la protection, l'inclusion financière. Nous avons déjà prototypé Akwɛ, « l'argent » en fon, mis de côté pour cette finale : un cahier tenu à la voix, un prêt en 48 heures demandé à la voix et pensé pour le Microcrédit Alafia, un espace pour les microfinances avec un passeport de crédit, et un rapport de chiffre d'affaires en PDF. Côté sécurité : la mise en attente de l'appel avec l'opérateur, la lecture des captures d'écran, la détection des voix clonées, et d'autres langues comme le yoruba, le mina et le dendi.</div>
+</section>
+
+<!-- 20b critères -->
+<section class="slide" data-bg="1">
+  <div class="k a">Nos réponses aux critères du jury</div>
+  <h2 class="a" style="--d:1;margin-top:20px">Cinq critères, <span class="gold">cinq preuves.</span></h2>
+  <div class="col" style="margin-top:44px;gap:14px">
+    <div class="glass a l" style="--d:2;padding:22px 34px;border-radius:24px;display:grid;grid-template-columns:420px 1fr;align-items:center"><h3 style="font-size:32px">💼 Utilité métier</h3><p class="s" style="color:#fff">Arrête l'arnaque avant le code ; moins de fraudes à rembourser pour l'opérateur</p></div>
+    <div class="glass a l" style="--d:3;padding:22px 34px;border-radius:24px;display:grid;grid-template-columns:420px 1fr;align-items:center"><h3 style="font-size:32px">📈 Résultat technique</h3><p class="s" style="color:#fff">GraphSAGE : précision ×3, fausses alertes ÷4 ; faux agent → Critique, vrai service → Faible</p></div>
+    <div class="glass a l" style="--d:4;padding:22px 34px;border-radius:24px;display:grid;grid-template-columns:420px 1fr;align-items:center"><h3 style="font-size:32px">🧪 Qualité des données</h3><p class="s" style="color:#fff">Scénarios béninois, imitateurs, nouveaux comptes ; découpage dans le temps, aucune fuite</p></div>
+    <div class="glass a l" style="--d:5;padding:22px 34px;border-radius:24px;display:grid;grid-template-columns:420px 1fr;align-items:center"><h3 style="font-size:32px">🔁 Reproductibilité</h3><p class="s" style="color:#fff">Protocole figé, graines fixées, 115 tests, poids rejouables, code et démo publics</p></div>
+    <div class="glass g a l" style="--d:6;padding:22px 34px;border-radius:24px;display:grid;grid-template-columns:420px 1fr;align-items:center"><h3 style="font-size:32px">🚀 Faisabilité d'un pilote</h3><p class="s" style="color:#fff">App en ligne, API à 20 ms, service fon sur portable ; pilote gratuit de 6 mois avec un opérateur</p></div>
+  </div>
+  <div class="notes">Pour conclure sur vos critères. Utilité métier : on arrête l'arnaque avant le code, et l'opérateur a moins de fraudes à rembourser. Résultat technique : GraphSAGE triple la précision et divise par quatre les fausses alertes, et Call Guard classe le faux agent en critique et le vrai service en faible. Qualité des données : des scénarios béninois avec imitateurs et nouveaux comptes, un découpage dans le temps sans fuite. Reproductibilité : protocole figé, graines fixées, 115 tests, poids rejouables, code et démo publics. Faisabilité d'un pilote : l'application est en ligne, l'API répond en 20 millisecondes, le fon tourne sur un portable, et nous proposons un pilote gratuit de six mois avec un opérateur.</div>
 </section>
 
 <!-- 21 merci -->
